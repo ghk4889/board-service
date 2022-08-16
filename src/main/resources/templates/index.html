@@ -15,7 +15,7 @@
     </style>
 </head>
 
-<body>
+<body class="d-flex flex-column vh-100">
 
 <nav th:replace="~{fragment :: nav}" class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Board Project</a>
@@ -109,11 +109,16 @@
 
     </div>
 
-
 </div> <!-- container end-->
 
 
-</div>
+<footer th:replace="~{fragment :: footer}" class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">형식상 footer</span>
+    </div>
+</footer>
+
 </body>
 </html>
+
 
