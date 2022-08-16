@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hello.itemservice.repository.mapper.ItemMapper">
+
+    <resultMap id="itemResultMap" type="Item">
+        <id column="item_id" jdbcType="BIGINT" property="itemId" />
+        <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+        <result column="price" jdbcType="INTEGER" property="price" />
+        <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    </resultMap>
+
+    <insert id="save" parameterType="Item" useGeneratedKeys="true" keyProperty="itemId" >
+        INSERT INTO item(item_name, price, quantity)
+        VALUES (#{itemName}, #{price}, #{quantity})
+    </insert>
+
+    <select id="findById" parameterType="Long" resultMap="itemResultMap" >
+        SELECT item_id, item_name, price, quantity
+        from item
+        WHERE item_id = #{itemId}
+    </select>
+
+    <select id="findAll" resultMap="itemResultMap" >
+        SELECT item_id, item_name, price, quantity
+        from item
+    </select>
+
+    <update id="update" parameterType="Item" >
+        UPDATE item
+        SET item_name = #{itemName},
+            price = #{price},
+            quantity = #{quantity}
+        WHERE item_id = #{itemId};
+    </update>
+
+</mapper>
