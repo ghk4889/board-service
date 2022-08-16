@@ -38,4 +38,4 @@ out/
 
 ### etc ###
 mybatis-config.xml
-applicatioin.properties
+application.properties
