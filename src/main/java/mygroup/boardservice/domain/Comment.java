@@ -12,15 +12,15 @@ import java.util.List;
 @Getter
 public class Comment {
 
-    private int id;
+    private long id;
     private String content;
     private String writer;
     private Date createdDate;
     private Date modifiedDate;
 
-    private int postId;
+    private long postId;
     private User user;
-    private int commentId; //이 필드에 값이 있으면 댓글에 대한 댓글임.
+    private long commentId; //이 필드에 값이 있으면 댓글에 대한 댓글임.
 
     private List<Comment> replys;
 

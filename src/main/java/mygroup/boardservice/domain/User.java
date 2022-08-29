@@ -12,7 +12,7 @@ import java.sql.Date;
 public class User {
     public enum Grade{VIP, COMMON}
 
-    private int id;
+    private long id;
     private String email;
     private String nickname;
     private Date createdDate;

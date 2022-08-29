@@ -12,11 +12,11 @@ import java.util.List;
 @Getter
 public class CommonPost implements Post{
 
-    private int id;
+    private long id;
     private String title;
     private String content;
     private String writer;
-    private int viewCount;
+    private long viewCount;
     private Date createdDate;
     private Date modifiedDate;
 
