@@ -13,37 +13,30 @@
             <arg column="view_count" javaType="long"/>
             <arg column="created_date" javaType="java.sql.Date"/>
             <arg column="modified_date" javaType="java.sql.Date"/>
-<!--            <arg resultMap="UserResultMap"/>-->
+            <arg resultMap="UserResultMap" javaType="User"/>
         </constructor>
     </resultMap>
 
-<!--    <resultMap id="UserResultMap" type="User">-->
-<!--        <constructor>-->
-<!--            <idArg column="id" javaType="long"/>-->
-<!--            <arg column="email" javaType="string"/>-->
-<!--            <arg column="nickname" javaType="string"/>-->
-<!--            <arg column="created_date" javaType="date"/>-->
-<!--            <arg column="modified_date" javaType="date"/>-->
+    <resultMap id="UserResultMap" type="User">
+        <constructor>
+            <idArg column="id" javaType="long"/>
+            <arg column="email" javaType="string"/>
+            <arg column="nickname" javaType="string"/>
+            <arg column="created_date" javaType="java.sql.Date"/>
+            <arg column="modified_date" javaType="java.sql.Date"/>
 <!--            <arg column="grade" javaType="grade"/>-->
-<!--        </constructor>-->
-<!--    </resultMap>-->
+        </constructor>
+    </resultMap>
 
 
     <select id="findById" parameterType="Long" resultMap="PostResultMap" >
         SELECT vp.id, vp.title, vp.content, vp.writer, vp.view_count, vp.created_date, vp.modified_date
-<!--                , u.id, u.email, u.nickname, u.created_date, u.modified_date, u.grade-->
-        FROM vip_post vp
-<!--        , user u-->
-        where vp.id = #{id};
-<!--        and vp.writer = u.nickname ;-->
+                , u.id, u.email, u.nickname, u.created_date, u.modified_date, u.grade
+        FROM vip_post vp, user u
+        where vp.id = #{id} and vp.writer = u.nickname ;
     </select>
-<!--        private int id;
-    private String title;
-    private String content;
-    private String writer;
-    private int viewCount;
-    private Date createdDate;
-    private Date modifiedDate;-->
+
+
 <!--
     <insert id="save" parameterType="Item" useGeneratedKeys="true" keyProperty="itemId" >
         INSERT INTO item(item_name, price, quantity)
