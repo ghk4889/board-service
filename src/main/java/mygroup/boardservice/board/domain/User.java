@@ -1,4 +1,4 @@
-package mygroup.boardservice.domain;
+package mygroup.boardservice.board.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,14 +12,13 @@ import java.sql.Date;
 @Getter
 @ToString
 public class User {
-//    public enum Grade{VIP, COMMON}
 
     private Long id;
     private String email;
     private String nickname;
     private Date createdDate;
     private Date modifiedDate;
-//    private Grade grade;
+    private Grade grade;
 
 //    public void changeGrade(Grade grade){
 //        this.grade = grade;

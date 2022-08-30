@@ -1,10 +1,8 @@
-package mygroup.boardservice.adapter.out.persistence;
+package mygroup.boardservice.board.adapter.out.persistence;
 
 import lombok.RequiredArgsConstructor;
-import mygroup.boardservice.adapter.out.persistence.mapper.VipPostMapper;
-import mygroup.boardservice.domain.VipPost;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
+import mygroup.boardservice.board.adapter.out.persistence.mapper.VipPostMapper;
+import mygroup.boardservice.board.domain.VipPost;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
