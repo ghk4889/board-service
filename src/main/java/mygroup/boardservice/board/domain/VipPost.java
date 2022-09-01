@@ -1,13 +1,11 @@
 package mygroup.boardservice.board.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Date;
+import java.util.List;
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString
@@ -23,8 +21,19 @@ public class VipPost implements Post{
 
     private User user;
 
-// 현재 VipPost 테이블만 있기 때문에 아래 두 필드는 아직 받을 수 없다. 나중에 추가할 것.
+    @Setter
+    private List<Comment> comments;
 
-//    private List<Comment> comments;
+    public VipPost(Long id, String title, String content, String writer, Long viewCount, Date createdDate,
+                   Date modifiedDate, User user) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.viewCount = viewCount;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
+        this.user = user;
+    }
 
 }

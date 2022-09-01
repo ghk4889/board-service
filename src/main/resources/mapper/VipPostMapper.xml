@@ -6,36 +6,51 @@
 
     <resultMap id="PostResultMap" type="VipPost">
         <constructor>
-            <idArg column="id" javaType="long" />
+            <idArg column="vpid" javaType="long" />
             <arg column="title" javaType="String" />
-            <arg column="content" javaType="String"/>
+            <arg column="vcontent" javaType="String"/>
             <arg column="writer" javaType="String" />
             <arg column="view_count" javaType="long"/>
             <arg column="created_date" javaType="java.sql.Date"/>
             <arg column="modified_date" javaType="java.sql.Date"/>
             <arg resultMap="UserResultMap" javaType="User"/>
         </constructor>
+
+        <collection property="comments" ofType="Comment" resultMap="CommentResultMap"/>
+
     </resultMap>
 
     <resultMap id="UserResultMap" type="User">
         <constructor>
-            <idArg column="id" javaType="long"/>
+            <idArg column="uid" javaType="long"/>
             <arg column="email" javaType="string"/>
             <arg column="nickname" javaType="string"/>
-            <arg column="created_date" javaType="java.sql.Date"/>
-            <arg column="modified_date" javaType="java.sql.Date"/>
+            <arg column="u_created_date" javaType="java.sql.Date"/>
+            <arg column="u_modified_date" javaType="java.sql.Date"/>
             <arg column="grade" javaType="Grade"/>
+        </constructor>
+    </resultMap>
+
+    <resultMap id="CommentResultMap" type="Comment">
+        <constructor>
+            <idArg column="cid" javaType="long"/>
+            <arg column="ccontent" javaType="string"/>
+            <arg column="c_writer" javaType="string"/>
+            <arg column="c_created_date" javaType="java.sql.Date"/>
+            <arg column="c_modified_date" javaType="java.sql.Date"/>
+            <arg column="post_id" javaType="long"/>
+            <arg column="comment_id" javaType="Long"/>
         </constructor>
     </resultMap>
 
 
     <select id="findById" parameterType="Long" resultMap="PostResultMap" >
-        SELECT vp.id, vp.title, vp.content, vp.writer, vp.view_count, vp.created_date, vp.modified_date
-                , u.id, u.email, u.nickname, u.created_date, u.modified_date, u.grade
-        FROM vip_post vp, user u
-        where vp.id = #{id} and vp.writer = u.nickname ;
+        SELECT vp.id as vpid , vp.title, vp.content as vcontent, vp.writer, vp.view_count, vp.created_date, vp.modified_date
+        , u.id as uid, u.email, u.nickname, u.created_date as u_created_date, u.modified_date as u_modified_date, u.grade
+        , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.comment_id
+        FROM vip_post vp, user u , comment c
+        where vp.id = 2 and vp.writer = u.nickname and vp.id = c.post_id;
     </select>
-
 
 <!--
     <insert id="save" parameterType="Item" useGeneratedKeys="true" keyProperty="itemId" >
