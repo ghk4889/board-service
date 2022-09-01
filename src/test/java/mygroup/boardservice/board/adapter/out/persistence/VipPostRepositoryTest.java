@@ -20,10 +20,18 @@ class VipPostRepositoryTest {
 
     @Test
     void findById() {
-
-        vipPostMapper.findById(2L).getComments().stream()
-                .forEach(comment -> {log.info(comment.toString());});
+        log.info(vipPostMapper.findById(3L).toString());
     }
+
+    @Test
+    void findAll() throws Exception{
+        vipPostMapper.findAll().stream()
+                .forEach(vipPost -> {
+                    log.info(vipPost.toString());
+                });
+    }
+
+
 }
 
 
