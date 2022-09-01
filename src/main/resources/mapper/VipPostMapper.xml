@@ -57,8 +57,8 @@
         SELECT vp.id as vpid , vp.title, vp.content as vcontent, vp.writer, vp.view_count, vp.created_date, vp.modified_date
         , u.id as uid, u.email, u.nickname, u.created_date as u_created_date, u.modified_date as u_modified_date, u.grade
         , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.comment_id
-        FROM vip_post vp, user u , comment c
-        where vp.writer = u.nickname and vp.id = c.post_id;
+        FROM vip_post vp LEFT OUTER JOIN (select * from comment) as c ON c.post_id = vp.id, user u
+        WHERE u.nickname = vp.writer ;
     </select>
 
 
