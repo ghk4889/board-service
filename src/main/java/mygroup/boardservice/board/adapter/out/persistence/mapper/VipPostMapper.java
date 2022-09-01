@@ -12,4 +12,5 @@ public interface VipPostMapper {
 
     VipPost findById(Long postId);
     List<VipPost> findAll();
+    int save(VipPost vipPost);
 }

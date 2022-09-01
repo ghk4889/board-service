@@ -5,7 +5,6 @@ import lombok.*;
 import java.sql.Date;
 import java.util.List;
 
-//@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString
@@ -24,6 +23,7 @@ public class VipPost implements Post{
     @Setter
     private List<Comment> comments;
 
+    //select 할 때 사용됨
     public VipPost(Long id, String title, String content, String writer, Long viewCount, Date createdDate,
                    Date modifiedDate, User user) {
         this.id = id;
@@ -34,6 +34,18 @@ public class VipPost implements Post{
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
         this.user = user;
+    }
+    
+    //insert할 때 사용됨. (id 필드와 user 필드 받지 않음)
+    public VipPost(String title, String content, String writer, Long viewCount,
+                   Date createdDate, Date modifiedDate) {
+
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.viewCount = viewCount;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
     }
 
 }

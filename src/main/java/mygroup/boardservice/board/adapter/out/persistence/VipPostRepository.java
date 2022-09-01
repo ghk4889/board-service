@@ -21,5 +21,10 @@ public class VipPostRepository {
         return vipPostMapper.findAll();
     }
 
+    public int save(VipPost vipPost){
+        return vipPostMapper.save(vipPost);
+    }
+
+
 
 }

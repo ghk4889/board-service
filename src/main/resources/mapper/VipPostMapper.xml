@@ -61,13 +61,15 @@
         WHERE u.nickname = vp.writer ;
     </select>
 
-
-
-<!--
     <insert id="save" parameterType="VipPost" useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO vip_post(title, content, writer, view_count, created_date, modified_date)
         VALUES(#{title}, #{content}, #{writer}, #{viewCount}, #{createdDate}, #{modifiedDate});
     </insert>
+
+
+
+<!--
+
 
 
 
