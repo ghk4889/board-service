@@ -2,6 +2,7 @@ package mygroup.boardservice.board.adapter.out.persistence;
 
 import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.VipPostMapper;
+import mygroup.boardservice.board.domain.Post;
 import mygroup.boardservice.board.domain.VipPost;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +26,6 @@ public class VipPostRepository {
         return vipPostMapper.save(vipPost);
     }
 
-
+    public int update(VipPost vipPost){ return vipPostMapper.update(vipPost); }
 
 }

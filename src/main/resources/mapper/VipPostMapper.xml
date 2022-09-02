@@ -67,18 +67,19 @@
     </insert>
 
 
+    <update id="update" parameterType="VipPost" >
+        UPDATE vip_post
+        SET title = #{title},
+        content= #{content},
+        modified_date = #{modifiedDate}
+        WHERE id = #{id};
+    </update>
+
 
 <!--
 
 
 
 
-    <update id="update" parameterType="Item" >
-        UPDATE item
-        SET item_name = #{itemName},
-            price = #{price},
-            quantity = #{quantity}
-        WHERE item_id = #{itemId};
-    </update>
 -->
 </mapper>

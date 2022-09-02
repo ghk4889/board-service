@@ -35,6 +35,20 @@ class VipPostRepositoryTest {
         log.info( "insert 후 객체 id 값: " + vipPost.getId());
     }
 
+    @Test
+    void update() {
+        //given
+        VipPost vipPost = vipPostMapper.findById(6L);
+        log.info(vipPost.toString());
+        VipPost updateForm = new VipPost(vipPost.getId(), "update title2"
+                                , "update content", Date.valueOf("2022-09-08"));
+
+        //when
+        vipPostMapper.update(updateForm);
+
+        //then
+        log.info(vipPostMapper.findById(6L).toString());
+    }
 
 }
 
