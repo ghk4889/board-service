@@ -22,6 +22,8 @@ class UserRepositoryTest {
 
     @Test
     void findAll() {
+        userMapper.findAll()
+                .forEach(user -> log.info(user.toString()) );
     }
 
     @Test

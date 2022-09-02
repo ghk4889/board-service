@@ -20,4 +20,13 @@
         WHERE id = #{id};
     </select>
 
+    <select id="findAll" resultMap="UserResultMap">
+        SELECT id, email, nickname, created_date, modified_date, grade
+        FROM user;
+    </select>
+
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+
+    </insert>
+
 </mapper>
