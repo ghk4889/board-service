@@ -1,8 +1,9 @@
-package mygroup.boardservice.domain;
+package mygroup.boardservice.board.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.sql.Date;
 import java.util.List;
@@ -10,18 +11,20 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class VipPost implements Post{
+@ToString
+public class Comment {
 
-    private int id;
-    private String title;
+    private Long id;
     private String content;
     private String writer;
-    private int viewCount;
     private Date createdDate;
     private Date modifiedDate;
 
-    private User user;
+    private Long postId;
+    private Long commentId; //이 필드에 값이 있으면 댓글에 대한 댓글임.
 
-    private List<Comment> comments;
+//    private List<Comment> replys;
+
+
 
 }

@@ -1,8 +1,9 @@
-package mygroup.boardservice.domain;
+package mygroup.boardservice.board.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.sql.Date;
 import java.util.List;
@@ -10,20 +11,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Comment {
+@ToString
+public class CommonPost implements Post{
 
-    private int id;
+    private long id;
+    private String title;
     private String content;
     private String writer;
+    private long viewCount;
     private Date createdDate;
     private Date modifiedDate;
 
-    private int postId;
     private User user;
-    private int commentId; //이 필드에 값이 있으면 댓글에 대한 댓글임.
 
-    private List<Comment> replys;
-
-
+    private List<Comment> comments;
 
 }

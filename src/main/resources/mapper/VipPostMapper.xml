@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mygroup.boardservice.board.adapter.out.persistence.mapper.VipPostMapper">
+
+    <resultMap id="PostResultMap" type="VipPost">
+        <constructor>
+            <idArg column="vpid" javaType="long" />
+            <arg column="title" javaType="String" />
+            <arg column="vcontent" javaType="String"/>
+            <arg column="writer" javaType="String" />
+            <arg column="view_count" javaType="long"/>
+            <arg column="created_date" javaType="java.sql.Date"/>
+            <arg column="modified_date" javaType="java.sql.Date"/>
+            <arg resultMap="UserResultMap" javaType="User"/>
+        </constructor>
+
+        <collection property="comments" ofType="Comment" resultMap="CommentResultMap"/>
+
+    </resultMap>
+
+    <resultMap id="UserResultMap" type="User">
+        <constructor>
+            <idArg column="uid" javaType="long"/>
+            <arg column="email" javaType="string"/>
+            <arg column="nickname" javaType="string"/>
+            <arg column="u_created_date" javaType="java.sql.Date"/>
+            <arg column="u_modified_date" javaType="java.sql.Date"/>
+            <arg column="grade" javaType="Grade"/>
+        </constructor>
+    </resultMap>
+
+    <resultMap id="CommentResultMap" type="Comment">
+        <constructor>
+            <idArg column="cid" javaType="long"/>
+            <arg column="ccontent" javaType="string"/>
+            <arg column="c_writer" javaType="string"/>
+            <arg column="c_created_date" javaType="java.sql.Date"/>
+            <arg column="c_modified_date" javaType="java.sql.Date"/>
+            <arg column="post_id" javaType="long"/>
+            <arg column="comment_id" javaType="Long"/>
+        </constructor>
+    </resultMap>
+
+
+    <select id="findById" parameterType="Long" resultMap="PostResultMap" >
+        SELECT vp.id as vpid , vp.title, vp.content as vcontent, vp.writer, vp.view_count, vp.created_date, vp.modified_date
+        , u.id as uid, u.email, u.nickname, u.created_date as u_created_date, u.modified_date as u_modified_date, u.grade
+        , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.comment_id
+        FROM vip_post vp LEFT OUTER JOIN (select * from comment) as c ON c.post_id = vp.id, user u
+        WHERE vp.id=#{id} AND u.nickname = vp.writer;
+    </select>
+
+
+    <select id="findAll" resultMap="PostResultMap" >
+        SELECT vp.id as vpid , vp.title, vp.content as vcontent, vp.writer, vp.view_count, vp.created_date, vp.modified_date
+        , u.id as uid, u.email, u.nickname, u.created_date as u_created_date, u.modified_date as u_modified_date, u.grade
+        , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.comment_id
+        FROM vip_post vp LEFT OUTER JOIN (select * from comment) as c ON c.post_id = vp.id, user u
+        WHERE u.nickname = vp.writer ;
+    </select>
+
+    <insert id="save" parameterType="VipPost" useGeneratedKeys="true" keyProperty="id" >
+        INSERT INTO vip_post(title, content, writer, view_count, created_date, modified_date)
+        VALUES(#{title}, #{content}, #{writer}, #{viewCount}, #{createdDate}, #{modifiedDate});
+    </insert>
+
+
+    <update id="update" parameterType="VipPost" >
+        UPDATE vip_post
+        SET title = #{title},
+        content= #{content},
+        modified_date = #{modifiedDate}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        DELETE FROM vip_post WHERE id = #{id};
+    </delete>
+
+
+<!--
+
+
+
+
+-->
+</mapper>
