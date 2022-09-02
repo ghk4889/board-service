@@ -26,7 +26,8 @@
     </select>
 
     <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-
+        insert into user(email, password, nickname, created_date, modified_date, grade)
+        values(#{email}, sha2(#{password}, 256), #{nickname}, #{createdDate}, #{createdDate}, #{grade});
     </insert>
 
 </mapper>
