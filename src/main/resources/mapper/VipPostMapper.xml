@@ -75,6 +75,10 @@
         WHERE id = #{id};
     </update>
 
+    <delete id="delete" parameterType="Long">
+        DELETE FROM vip_post WHERE id = #{id};
+    </delete>
+
 
 <!--
 

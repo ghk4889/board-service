@@ -28,4 +28,6 @@ public class VipPostRepository {
 
     public int update(VipPost vipPost){ return vipPostMapper.update(vipPost); }
 
+    public int delete(Long id){ return vipPostMapper.delete(id); }
+
 }

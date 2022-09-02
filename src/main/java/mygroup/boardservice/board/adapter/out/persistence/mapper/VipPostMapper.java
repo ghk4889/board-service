@@ -15,4 +15,5 @@ public interface VipPostMapper {
     List<VipPost> findAll();
     int save(VipPost vipPost);
     int update(VipPost vipPost);
+    int delete(Long id);
 }
