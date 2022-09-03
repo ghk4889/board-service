@@ -31,4 +31,11 @@
         VALUES(#{content}, #{writer}, #{createdDate}, #{modifiedDate}, #{postId}, #{replyTargetId});
     </insert>
 
+    <update id="update" parameterType="Comment" >
+        UPDATE comment
+        SET content = #{content},
+            modified_date = #{modifiedDate}
+        WHERE id = #{id};
+    </update>
+
 </mapper>

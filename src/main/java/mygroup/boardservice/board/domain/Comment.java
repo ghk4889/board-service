@@ -42,4 +42,11 @@ public class Comment {
         this.postId = postId;
         this.replyTargetId = replyTargetId;
     }
+
+    //update 용
+    public Comment(Long id, String content, Date modifiedDate) {
+        this.id = id;
+        this.content = content;
+        this.modifiedDate = modifiedDate;
+    }
 }

@@ -44,12 +44,17 @@ class CommentRepositoryTest {
         log.info("삽입된 comment의 id: " + comment.getId());
 
         Assertions.assertThat(comment.getId()).isNotNull();
-
-
     }
 
     @Test
     void update() {
+        //given
+        Comment comment = new Comment(4L, "updated content2", Date.valueOf("2022-09-06"));
+        //when
+        commentMapper.update(comment);
+        //then
+        Assertions.assertThat(commentMapper.findById(4L).getContent()).isEqualTo("updated content2");
+
     }
 
     @Test
