@@ -11,16 +11,24 @@
             <arg column="created_date" javaType="java.sql.Date"/>
             <arg column="modified_date" javaType="java.sql.Date"/>
             <arg column="post_id" javaType="long"/>
-            <arg column="comment_id" javaType="Long" />
+            <arg column="reply_target_id" javaType="Long" />
         </constructor>
     </resultMap>
 
     <select id="findById" parameterType="Long" resultMap="CommentResultMap">
-        SELECT id, content, writer, created_date, modified_date, post_id, comment_id
+        SELECT id, content, writer, created_date, modified_date, post_id, reply_target_id
         FROM comment
         WHERE id=#{id};
     </select>
 
+    <select id="findAll" resultMap="CommentResultMap">
+        SELECT id, content, writer, created_date, modified_date, post_id, reply_target_id
+        FROM comment;
+    </select>
 
+    <insert id="save" parameterType="Comment" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO comment(content, writer, created_date, modified_date, post_id, reply_target_id)
+        VALUES(#{content}, #{writer}, #{createdDate}, #{modifiedDate}, #{postId}, #{replyTargetId});
+    </insert>
 
 </mapper>

@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.Date;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -27,10 +30,22 @@ class CommentRepositoryTest {
 
     @Test
     void findAll() {
+        List<Comment> comments = commentMapper.findAll();
+        comments.forEach(comment -> log.info(comment.toString()));
+        Assertions.assertThat(comments).isNotNull();
     }
 
     @Test
     void save() {
+        Comment comment = new Comment("save Test2!", "vipname3", new Date(System.currentTimeMillis())
+                , new Date(System.currentTimeMillis()), 2L, 3L);
+
+        commentMapper.save(comment);
+        log.info("삽입된 comment의 id: " + comment.getId());
+
+        Assertions.assertThat(comment.getId()).isNotNull();
+
+
     }
 
     @Test
