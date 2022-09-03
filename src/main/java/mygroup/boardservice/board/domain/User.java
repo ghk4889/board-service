@@ -42,13 +42,13 @@ public class User {
     }
     
     //update용 (닉네임 변경, 등급 변경, 비밀번호 변경 -> 변경일 갱신)
-//    public User(Long id, String nickname, Date modifiedDate, Grade grade, String password) {
-//        this.id = id;
-//        this.nickname = nickname;
-//        this.modifiedDate = modifiedDate;
-//        this.grade = grade;
-//        this.password = password;
-//    }
+    public User(Long id, String nickname, Date modifiedDate, Grade grade, String password) {
+        this.id = id;
+        this.nickname = nickname;
+        this.modifiedDate = modifiedDate;
+        this.grade = grade;
+        this.password = password;
+    }
 
 
 //    public void changeGrade(Grade grade){
