@@ -21,14 +21,14 @@ public class BoardServiceApplication {
 		SpringApplication.run(BoardServiceApplication.class, args);
 	}
 
-	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource);
-		Resource configLocation = new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml");
-
-		sessionFactory.setConfigLocation(configLocation);
-		return sessionFactory.getObject();
-	}
+//	@Bean
+//	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+//		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+//		sessionFactory.setDataSource(dataSource);
+//		Resource configLocation = new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml");
+//
+//		sessionFactory.setConfigLocation(configLocation);
+//		return sessionFactory.getObject();
+//	}
 
 }

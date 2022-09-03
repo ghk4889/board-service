@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mygroup.boardservice.board.adapter.out.persistence.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="User">
+        <constructor>
+            <idArg column="id" javaType="long"/>
+            <arg column="email" javaType="string"/>
+            <arg column="nickname" javaType="string"/>
+            <arg column="created_date" javaType="java.sql.Date"/>
+            <arg column="modified_date" javaType="java.sql.Date"/>
+            <arg column="grade" javaType="Grade"/>
+        </constructor>
+    </resultMap>
+
+    <select id="findById" parameterType="Long" resultMap="UserResultMap">
+        SELECT id, email, nickname, created_date, modified_date, grade
+        FROM user
+        WHERE id = #{id};
+    </select>
+
+    <select id="findAll" resultMap="UserResultMap">
+        SELECT id, email, nickname, created_date, modified_date, grade
+        FROM user;
+    </select>
+
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user(email, password, nickname, created_date, modified_date, grade)
+        VALUES(#{email}, sha2(#{password}, 256), #{nickname}, #{createdDate}, #{createdDate}, #{grade});
+    </insert>
+
+    <update id = "update" parameterType="User" >
+        UPDATE user
+        SET nickname = #{nickname},
+            modified_date = #{modifiedDate},
+            grade = #{grade},
+            password = sha2(#{password},256)
+        WHERE id = #{id};
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        DELETE FROM user WHERE id = #{id};
+    </delete>
+
+
+</mapper>
