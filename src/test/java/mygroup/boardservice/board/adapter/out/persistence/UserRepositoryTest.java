@@ -52,5 +52,19 @@ class UserRepositoryTest {
 
     @Test
     void delete() {
+        //given
+        User user = new User("forDelete@gmail.com", "beDeleted"
+                , new Date(System.currentTimeMillis()), Grade.VIP, "deletepwd");
+
+        userMapper.save(user);
+        log.info("삽입된 user의 id: " + user.getId());
+
+        //when
+        userMapper.delete(user.getId());
+
+
+        //then
+        Assertions.assertThat(userMapper.findById(user.getId())).isNull();
+
     }
 }
