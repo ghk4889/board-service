@@ -54,10 +54,23 @@ class CommentRepositoryTest {
         commentMapper.update(comment);
         //then
         Assertions.assertThat(commentMapper.findById(4L).getContent()).isEqualTo("updated content2");
-
     }
 
     @Test
     void delete() {
+        //given
+        Comment comment = new Comment("for delete", "vipname", new Date(System.currentTimeMillis())
+                , new Date(System.currentTimeMillis()), 2L, null);
+
+        commentMapper.save(comment);
+
+        log.info("삭제될 comment의 id: " + comment.getId());
+
+        //when
+        commentMapper.delete(comment.getId());
+
+        //then
+        Assertions.assertThat(commentMapper.findById(comment.getId())).isNull();
+
     }
 }
