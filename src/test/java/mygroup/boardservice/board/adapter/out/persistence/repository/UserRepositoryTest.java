@@ -1,4 +1,4 @@
-package mygroup.boardservice.board.adapter.out.persistence;
+package mygroup.boardservice.board.adapter.out.persistence.repository;
 
 import lombok.extern.slf4j.Slf4j;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.UserMapper;
