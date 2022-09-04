@@ -1,4 +1,4 @@
-package mygroup.boardservice.board.adapter.out.persistence;
+package mygroup.boardservice.board.adapter.out.persistence.repository;
 
 import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.UserMapper;
