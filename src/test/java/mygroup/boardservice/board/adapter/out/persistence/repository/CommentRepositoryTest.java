@@ -3,6 +3,8 @@ package mygroup.boardservice.board.adapter.out.persistence.repository;
 import lombok.extern.slf4j.Slf4j;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.CommentMapper;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.UserMapper;
+import mygroup.boardservice.board.application.port.out.comment.dto.CommentSaveDto;
+import mygroup.boardservice.board.application.port.out.comment.dto.CommentUpdateDto;
 import mygroup.boardservice.board.domain.Comment;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -37,40 +39,40 @@ class CommentRepositoryTest {
 
     @Test
     void save() {
-        Comment comment = new Comment("save Test2!", "vipname3", new Date(System.currentTimeMillis())
+        CommentSaveDto commentSaveDto = new CommentSaveDto("save DTO Test!", "vipname", new Date(System.currentTimeMillis())
                 , new Date(System.currentTimeMillis()), 2L, 3L);
 
-        commentMapper.save(comment);
-        log.info("삽입된 comment의 id: " + comment.getId());
+        commentMapper.save(commentSaveDto);
+        log.info("삽입된 comment의 id: " + commentSaveDto.getId());
 
-        Assertions.assertThat(comment.getId()).isNotNull();
+        Assertions.assertThat(commentSaveDto.getId()).isNotNull();
     }
 
     @Test
     void update() {
         //given
-        Comment comment = new Comment(4L, "updated content2", Date.valueOf("2022-09-06"));
+        CommentUpdateDto commentUpdateDto = new CommentUpdateDto(4L, "updated dto content", Date.valueOf("2022-09-07"));
         //when
-        commentMapper.update(comment);
+        commentMapper.update(commentUpdateDto);
         //then
-        Assertions.assertThat(commentMapper.findById(4L).getContent()).isEqualTo("updated content2");
+        Assertions.assertThat(commentMapper.findById(4L).getContent()).isEqualTo("updated dto content");
     }
 
     @Test
     void delete() {
         //given
-        Comment comment = new Comment("for delete", "vipname", new Date(System.currentTimeMillis())
+        CommentSaveDto commentSaveDto = new CommentSaveDto("for delete", "vipname", new Date(System.currentTimeMillis())
                 , new Date(System.currentTimeMillis()), 2L, null);
 
-        commentMapper.save(comment);
+        commentMapper.save(commentSaveDto);
 
-        log.info("삭제될 comment의 id: " + comment.getId());
+        log.info("삭제될 comment의 id: " + commentSaveDto.getId());
 
         //when
-        commentMapper.delete(comment.getId());
+        commentMapper.delete(commentSaveDto.getId());
 
         //then
-        Assertions.assertThat(commentMapper.findById(comment.getId())).isNull();
+        Assertions.assertThat(commentMapper.findById(commentSaveDto.getId())).isNull();
 
     }
 }
