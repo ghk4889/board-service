@@ -12,13 +12,13 @@
     </settings>
 
     <!-- 타입별칭 -->
-    <typeAliases>
-        <typeAlias type="mygroup.boardservice.board.domain.VipPost" alias ="VipPost"/>
-        <typeAlias type="mygroup.boardservice.board.domain.CommonPost" alias ="CommonPost"/>
-        <typeAlias type="mygroup.boardservice.board.domain.Comment" alias ="Comment"/>
-        <typeAlias type="mygroup.boardservice.board.domain.User" alias ="User"/>
-        <typeAlias type="mygroup.boardservice.board.domain.Grade" alias="Grade"/>
-    </typeAliases>
+<!--    <typeAliases>-->
+<!--        <typeAlias type="mygroup.boardservice.board.domain.VipPost" alias ="VipPost"/>-->
+<!--        <typeAlias type="mygroup.boardservice.board.domain.CommonPost" alias ="CommonPost"/>-->
+<!--        <typeAlias type="mygroup.boardservice.board.domain.Comment" alias ="Comment"/>-->
+<!--        <typeAlias type="mygroup.boardservice.board.domain.User" alias ="User"/>-->
+<!--        <typeAlias type="mygroup.boardservice.board.domain.Grade" alias="Grade"/>-->
+<!--    </typeAliases>-->
 
     <!--    타입핸들러 등록-->
     <typeHandlers>

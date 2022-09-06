@@ -3,6 +3,8 @@ package mygroup.boardservice.board.application.service;
 import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.application.port.in.vippost.*;
 import mygroup.boardservice.board.application.port.out.vippost.*;
+import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostSaveDto;
+import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostUpdateDto;
 import mygroup.boardservice.board.domain.VipPost;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,14 +34,14 @@ public class VipPostService implements GetAllVipPostsUseCase, GetVipPostUseCase,
 
     @Transactional
     @Override
-    public void saveVipPost(VipPost vipPost) {
-        saveVipPostPort.saveVipPost(vipPost);
+    public void saveVipPost(VipPostSaveDto vipPostSaveDto) {
+        saveVipPostPort.saveVipPost(vipPostSaveDto);
     }
 
     @Transactional
     @Override
-    public void updateVipPost(VipPost vipPost) {
-        updateVipPostPort.updateVipPost(vipPost);
+    public void updateVipPost(VipPostUpdateDto vipPostUpdateDto) {
+        updateVipPostPort.updateVipPost(vipPostUpdateDto);
     }
 
     @Transactional
