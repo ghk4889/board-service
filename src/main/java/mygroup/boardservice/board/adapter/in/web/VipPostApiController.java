@@ -5,8 +5,7 @@ import mygroup.boardservice.board.application.port.in.vippost.*;
 import mygroup.boardservice.board.domain.VipPost;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +23,14 @@ public class VipPostApiController {
         List<VipPost> vipPosts = getAllVipPostsUseCase.getVipPosts();
         return new ResponseEntity<>(vipPosts, HttpStatus.OK);
     }
+
+    @GetMapping("/api/vipposts/{id}")    //특정 vippost 게시글 조회
+    public ResponseEntity<VipPost> getVipPost(@PathVariable Long id){
+        VipPost vipPost = getVipPostUseCase.getVipPost(id);
+        return new ResponseEntity<>(vipPost,HttpStatus.OK);
+    }
+
+
 
 
 }
