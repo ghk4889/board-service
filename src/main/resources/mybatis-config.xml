@@ -18,6 +18,12 @@
 <!--        <typeAlias type="mygroup.boardservice.board.domain.Comment" alias ="Comment"/>-->
 <!--        <typeAlias type="mygroup.boardservice.board.domain.User" alias ="User"/>-->
 <!--        <typeAlias type="mygroup.boardservice.board.domain.Grade" alias="Grade"/>-->
+<!--        <typeAlias type="mygroup.boardservice.board.application.port.out.vippost.dto.VipPostSaveDto" alias="VipPostSaveDto"/>-->
+<!--        <typeAlias type="mygroup.boardservice.board.application.port.out.vippost.dto.VipPostUpdateDto" alias="VipPostUpdateDto"/>-->
+<!--        <typeAlias type="mygroup.boardservice.board.application.port.out.user.dto.UserSaveDto" alias="UserSaveDto"/>-->
+<!--        <typeAlias type="mygroup.boardservice.board.application.port.out.user.dto.UserUpdateDto" alias="UserUpdateDto"/>-->
+<!--        <typeAlias type="mygroup.boardservice.board.application.port.out.comment.dto.CommentSaveDto" alias="CommentSaveDto"/>-->
+<!--        <typeAlias type="mygroup.boardservice.board.application.port.out.comment.dto.CommentUpdateDto" alias="CommentUpdateDto"/>-->
 <!--    </typeAliases>-->
 
     <!--    타입핸들러 등록-->
