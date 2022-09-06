@@ -2,8 +2,8 @@ package mygroup.boardservice.board.adapter.out.persistence.repository;
 
 import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.UserMapper;
-import mygroup.boardservice.board.application.port.out.vippost.dto.UserSaveDto;
-import mygroup.boardservice.board.application.port.out.vippost.dto.UserUpdateDto;
+import mygroup.boardservice.board.application.port.out.user.dto.UserSaveDto;
+import mygroup.boardservice.board.application.port.out.user.dto.UserUpdateDto;
 import mygroup.boardservice.board.domain.User;
 import org.springframework.stereotype.Repository;
 

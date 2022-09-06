@@ -1,7 +1,6 @@
 package mygroup.boardservice.board.application.port.out.user;
 
-import mygroup.boardservice.board.application.port.out.vippost.dto.UserUpdateDto;
-import mygroup.boardservice.board.domain.User;
+import mygroup.boardservice.board.application.port.out.user.dto.UserUpdateDto;
 
 public interface UpdateUserPort {
     void updateUser(UserUpdateDto userUpdateDto);

@@ -1,4 +1,4 @@
-package mygroup.boardservice.board.application.port.out.vippost.dto;
+package mygroup.boardservice.board.application.port.out.user.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
