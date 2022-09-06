@@ -1,6 +1,5 @@
 package mygroup.boardservice.board.application.port.out.vippost.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;

@@ -3,6 +3,8 @@ package mygroup.boardservice.board.application.service;
 import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.application.port.in.user.*;
 import mygroup.boardservice.board.application.port.out.user.*;
+import mygroup.boardservice.board.application.port.out.vippost.dto.UserSaveDto;
+import mygroup.boardservice.board.application.port.out.vippost.dto.UserUpdateDto;
 import mygroup.boardservice.board.domain.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,14 +34,14 @@ public class UserService implements DeleteUserUseCase, GetAllUserUseCase, GetSpe
 
     @Transactional
     @Override
-    public void saveUser(User user) {
-        saveUserPort.saveUser(user);
+    public Long saveUser(UserSaveDto userSaveDto) {
+        return saveUserPort.saveUser(userSaveDto);
     }
 
     @Transactional
     @Override
-    public void updateUser(User user) {
-        updateUserPort.updateUser(user);
+    public void updateUser(UserUpdateDto userUpdateDto) {
+        updateUserPort.updateUser(userUpdateDto);
     }
 
     @Transactional

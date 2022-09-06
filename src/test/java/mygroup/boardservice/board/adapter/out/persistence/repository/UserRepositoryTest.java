@@ -2,6 +2,8 @@ package mygroup.boardservice.board.adapter.out.persistence.repository;
 
 import lombok.extern.slf4j.Slf4j;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.UserMapper;
+import mygroup.boardservice.board.application.port.out.vippost.dto.UserSaveDto;
+import mygroup.boardservice.board.application.port.out.vippost.dto.UserUpdateDto;
 import mygroup.boardservice.board.domain.Grade;
 import mygroup.boardservice.board.domain.User;
 import org.assertj.core.api.Assertions;
@@ -32,18 +34,18 @@ class UserRepositoryTest {
 
     @Test
     void save() {
-        User user = new User("test@gmail.com", "testname"
-                , new Date(System.currentTimeMillis()), Grade.VIP, "testpwd");
+        UserSaveDto userSaveDto = new UserSaveDto("testDTO@gmail.com", "testDtoName"
+                , new Date(System.currentTimeMillis()), Grade.COMMON, "testdtopwd");
 
-        userMapper.save(user);
+        userMapper.save(userSaveDto);
 
-        log.info( "insert 후 객체 id 값: " + user.getId());
+        log.info( "insert 후 객체 id 값: " + userSaveDto.getId());
     }
 
     @Test
     void update() {
-        User userForUpdate  = new User(4L, "updatename4"
-                , new Date(System.currentTimeMillis()), Grade.COMMON, "newpassword");
+        UserUpdateDto userForUpdate  = new UserUpdateDto(4L, "updateDTOname"
+                , new Date(System.currentTimeMillis()), Grade.COMMON, "newDTOpassword");
 
         userMapper.update(userForUpdate);
 
@@ -53,18 +55,18 @@ class UserRepositoryTest {
     @Test
     void delete() {
         //given
-        User user = new User("forDelete@gmail.com", "beDeleted"
+        UserSaveDto userSaveDto = new UserSaveDto("forDelete@gmail.com", "beDeleted"
                 , new Date(System.currentTimeMillis()), Grade.VIP, "deletepwd");
 
-        userMapper.save(user);
-        log.info("삽입된 user의 id: " + user.getId());
+        userMapper.save(userSaveDto);
+        log.info("삽입된 user의 id: " + userSaveDto.getId());
 
         //when
-        userMapper.delete(user.getId());
+        userMapper.delete(userSaveDto.getId());
 
 
         //then
-        Assertions.assertThat(userMapper.findById(user.getId())).isNull();
+        Assertions.assertThat(userMapper.findById(userSaveDto.getId())).isNull();
 
     }
 }

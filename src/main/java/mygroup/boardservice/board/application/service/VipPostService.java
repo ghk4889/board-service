@@ -34,8 +34,8 @@ public class VipPostService implements GetAllVipPostsUseCase, GetVipPostUseCase,
 
     @Transactional
     @Override
-    public void saveVipPost(VipPostSaveDto vipPostSaveDto) {
-        saveVipPostPort.saveVipPost(vipPostSaveDto);
+    public Long saveVipPost(VipPostSaveDto vipPostSaveDto) {
+        return saveVipPostPort.saveVipPost(vipPostSaveDto);
     }
 
     @Transactional

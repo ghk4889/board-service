@@ -2,6 +2,8 @@ package mygroup.boardservice.board.adapter.out.persistence.repository;
 
 import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.UserMapper;
+import mygroup.boardservice.board.application.port.out.vippost.dto.UserSaveDto;
+import mygroup.boardservice.board.application.port.out.vippost.dto.UserUpdateDto;
 import mygroup.boardservice.board.domain.User;
 import org.springframework.stereotype.Repository;
 
@@ -20,11 +22,12 @@ public class UserRepository {
         return userMapper.findAll();
     }
 
-    public int save(User user){
-        return userMapper.save(user);
+    public Long save(UserSaveDto userSaveDto){
+        userMapper.save(userSaveDto);
+        return userSaveDto.getId();
     }
 
-    public int update(User user){ return userMapper.update(user); }
+    public void update(UserUpdateDto userUpdateDto){ userMapper.update(userUpdateDto); }
 
-    public int delete(Long id){ return userMapper.delete(id); }
+    public void delete(Long id){ userMapper.delete(id); }
 }

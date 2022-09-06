@@ -3,6 +3,8 @@ package mygroup.boardservice.board.adapter.out.persistence;
 import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.adapter.out.persistence.repository.UserRepository;
 import mygroup.boardservice.board.application.port.out.user.*;
+import mygroup.boardservice.board.application.port.out.vippost.dto.UserSaveDto;
+import mygroup.boardservice.board.application.port.out.vippost.dto.UserUpdateDto;
 import mygroup.boardservice.board.domain.User;
 import org.springframework.stereotype.Component;
 
@@ -26,13 +28,13 @@ public class UserPersistenceAdapter implements GetAllUserPort, GetSpecificUserPo
     }
 
     @Override
-    public void saveUser(User user) {
-        userRepository.save(user);
+    public Long saveUser(UserSaveDto userSaveDto) {
+        return userRepository.save(userSaveDto);
     }
 
     @Override
-    public void updateUser(User user) {
-        userRepository.save(user);
+    public void updateUser(UserUpdateDto userUpdateDto) {
+        userRepository.update(userUpdateDto);
     }
 
     @Override

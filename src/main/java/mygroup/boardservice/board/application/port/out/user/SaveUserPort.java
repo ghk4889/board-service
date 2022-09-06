@@ -1,7 +1,7 @@
 package mygroup.boardservice.board.application.port.out.user;
 
-import mygroup.boardservice.board.domain.User;
+import mygroup.boardservice.board.application.port.out.vippost.dto.UserSaveDto;
 
 public interface SaveUserPort {
-    void saveUser(User user);
+    Long saveUser(UserSaveDto userSaveDto);
 }
