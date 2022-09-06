@@ -25,12 +25,12 @@
         FROM user;
     </select>
 
-    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="UserSaveDto" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user(email, password, nickname, created_date, modified_date, grade)
         VALUES(#{email}, sha2(#{password}, 256), #{nickname}, #{createdDate}, #{createdDate}, #{grade});
     </insert>
 
-    <update id = "update" parameterType="User" >
+    <update id = "update" parameterType="UserUpdateDto" >
         UPDATE user
         SET nickname = #{nickname},
             modified_date = #{modifiedDate},

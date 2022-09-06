@@ -3,6 +3,8 @@ package mygroup.boardservice.board.adapter.out.persistence;
 import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.adapter.out.persistence.repository.CommentRepository;
 import mygroup.boardservice.board.application.port.out.comment.*;
+import mygroup.boardservice.board.application.port.out.comment.dto.CommentSaveDto;
+import mygroup.boardservice.board.application.port.out.comment.dto.CommentUpdateDto;
 import mygroup.boardservice.board.domain.Comment;
 import org.springframework.stereotype.Component;
 
@@ -27,13 +29,13 @@ public class CommentPersistenceAdapter implements DeleteCommentPort, GetAllComme
     }
 
     @Override
-    public void saveComment(Comment comment) {
-        commentRepository.save(comment);
+    public Long saveComment(CommentSaveDto commentSaveDto) {
+        return commentRepository.save(commentSaveDto);
     }
 
     @Override
-    public void updateComment(Comment comment) {
-        commentRepository.update(comment);
+    public void updateComment(CommentUpdateDto commentUpdateDto) {
+        commentRepository.update(commentUpdateDto);
     }
 
     @Override

@@ -26,12 +26,12 @@
         FROM comment;
     </select>
 
-    <insert id="save" parameterType="Comment" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="CommentSaveDto" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO comment(content, writer, created_date, modified_date, post_id, reply_target_id)
         VALUES(#{content}, #{writer}, #{createdDate}, #{modifiedDate}, #{postId}, #{replyTargetId});
     </insert>
 
-    <update id="update" parameterType="Comment" >
+    <update id="update" parameterType="CommentUpdateDto" >
         UPDATE comment
         SET content = #{content},
             modified_date = #{modifiedDate}

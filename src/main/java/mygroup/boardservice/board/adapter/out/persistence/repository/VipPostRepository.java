@@ -2,6 +2,8 @@ package mygroup.boardservice.board.adapter.out.persistence.repository;
 
 import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.VipPostMapper;
+import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostSaveDto;
+import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostUpdateDto;
 import mygroup.boardservice.board.domain.Post;
 import mygroup.boardservice.board.domain.VipPost;
 import org.springframework.stereotype.Repository;
@@ -22,12 +24,13 @@ public class VipPostRepository {
         return vipPostMapper.findAll();
     }
 
-    public int save(VipPost vipPost){
-        return vipPostMapper.save(vipPost);
+    public Long save(VipPostSaveDto vipPostSaveDto){
+        vipPostMapper.save(vipPostSaveDto);
+        return vipPostSaveDto.getId(); // 삽입된 post의 id 값을 반환
     }
 
-    public int update(VipPost vipPost){ return vipPostMapper.update(vipPost); }
+    public void update(VipPostUpdateDto vipPostUpdateDto){ vipPostMapper.update(vipPostUpdateDto); }
 
-    public int delete(Long id){ return vipPostMapper.delete(id); }
+    public void delete(Long id){ vipPostMapper.delete(id); }
 
 }

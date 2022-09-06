@@ -39,7 +39,7 @@
             <arg column="c_created_date" javaType="java.sql.Date"/>
             <arg column="c_modified_date" javaType="java.sql.Date"/>
             <arg column="post_id" javaType="long"/>
-            <arg column="comment_id" javaType="Long"/>
+            <arg column="reply_target_id" javaType="Long"/>
         </constructor>
     </resultMap>
 
@@ -47,7 +47,7 @@
     <select id="findById" parameterType="Long" resultMap="PostResultMap" >
         SELECT vp.id as vpid , vp.title, vp.content as vcontent, vp.writer, vp.view_count, vp.created_date, vp.modified_date
         , u.id as uid, u.email, u.nickname, u.created_date as u_created_date, u.modified_date as u_modified_date, u.grade
-        , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.comment_id
+        , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.reply_target_id
         FROM vip_post vp LEFT OUTER JOIN (select * from comment) as c ON c.post_id = vp.id, user u
         WHERE vp.id=#{id} AND u.nickname = vp.writer;
     </select>
@@ -56,18 +56,18 @@
     <select id="findAll" resultMap="PostResultMap" >
         SELECT vp.id as vpid , vp.title, vp.content as vcontent, vp.writer, vp.view_count, vp.created_date, vp.modified_date
         , u.id as uid, u.email, u.nickname, u.created_date as u_created_date, u.modified_date as u_modified_date, u.grade
-        , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.comment_id
+        , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.reply_target_id
         FROM vip_post vp LEFT OUTER JOIN (select * from comment) as c ON c.post_id = vp.id, user u
         WHERE u.nickname = vp.writer ;
     </select>
 
-    <insert id="save" parameterType="VipPost" useGeneratedKeys="true" keyProperty="id" >
+    <insert id="save" parameterType="VipPostSaveDto" useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO vip_post(title, content, writer, view_count, created_date, modified_date)
         VALUES(#{title}, #{content}, #{writer}, #{viewCount}, #{createdDate}, #{modifiedDate});
     </insert>
 
 
-    <update id="update" parameterType="VipPost" >
+    <update id="update" parameterType="VipPostUpdateDto" >
         UPDATE vip_post
         SET title = #{title},
         content= #{content},

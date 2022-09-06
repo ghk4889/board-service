@@ -35,24 +35,4 @@ public class VipPost implements Post{
         this.modifiedDate = modifiedDate;
         this.user = user;
     }
-    
-    //insert할 때 사용됨.
-    public VipPost(String title, String content, String writer, Long viewCount,
-                   Date createdDate, Date modifiedDate) {
-
-        this.title = title;
-        this.content = content;
-        this.writer = writer;
-        this.viewCount = viewCount;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
-    }
-
-    //update할 때 사용됨.
-    public VipPost(Long id, String title, String content, Date modifiedDate) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.modifiedDate = modifiedDate;
-    }
 }

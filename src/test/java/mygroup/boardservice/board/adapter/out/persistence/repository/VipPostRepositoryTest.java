@@ -2,6 +2,8 @@ package mygroup.boardservice.board.adapter.out.persistence.repository;
 
 import lombok.extern.slf4j.Slf4j;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.VipPostMapper;
+import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostSaveDto;
+import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostUpdateDto;
 import mygroup.boardservice.board.domain.VipPost;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -30,10 +32,10 @@ class VipPostRepositoryTest {
 
     @Test
     void insert() {
-        VipPost vipPost = new VipPost("삽입 테스트2", "새로 삽입한 게시글의 내용2", "vipname",
-                7L, Date.valueOf("2022-09-02"), Date.valueOf("2022-09-02"));
-        vipPostMapper.save(vipPost);
-        log.info( "insert 후 객체 id 값: " + vipPost.getId());
+        VipPostSaveDto vipPostSaveDto = new VipPostSaveDto("DTO 삽입 테스트", "새로 삽입한 DTO 게시글의 내용"
+                , "vipname", 7L, Date.valueOf("2022-09-06"), Date.valueOf("2022-09-06"));
+        vipPostMapper.save(vipPostSaveDto);
+        log.info( "insert 후 객체 id 값: " + vipPostSaveDto.getId());
     }
 
     @Test
@@ -41,8 +43,8 @@ class VipPostRepositoryTest {
         //given
         VipPost vipPost = vipPostMapper.findById(6L);
         log.info(vipPost.toString());
-        VipPost updateForm = new VipPost(vipPost.getId(), "update title2"
-                                , "update content", Date.valueOf("2022-09-08"));
+        VipPostUpdateDto updateForm = new VipPostUpdateDto(vipPost.getId(), "update dto title"
+                                , "update dto content", Date.valueOf("2022-09-09"));
 
         //when
         vipPostMapper.update(updateForm);
@@ -54,17 +56,17 @@ class VipPostRepositoryTest {
     @Test
     void delete() {
         //given
-        VipPost vipPost = new VipPost("삭제용 테스트", "삭제할 게시글의 내용", "vipname",
+        VipPostSaveDto vipPostSaveDto = new VipPostSaveDto("삭제용 테스트", "삭제할 게시글의 내용", "vipname",
                 0L, Date.valueOf("2022-09-02"), Date.valueOf("2022-09-02"));
-        vipPostMapper.save(vipPost);
+        vipPostMapper.save(vipPostSaveDto);
 
-        log.info("" + vipPost.getId());
+        log.info("" + vipPostSaveDto.getId());
 
         //when
-        vipPostMapper.delete(vipPost.getId());
+        vipPostMapper.delete(vipPostSaveDto.getId());
 
         //then
-        Assertions.assertThat(vipPostMapper.findById(vipPost.getId())).isEqualTo(null);
+        Assertions.assertThat(vipPostMapper.findById(vipPostSaveDto.getId())).isEqualTo(null);
     }
 
 }

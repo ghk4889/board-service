@@ -2,6 +2,8 @@ package mygroup.boardservice.board.adapter.out.persistence.repository;
 
 import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.CommentMapper;
+import mygroup.boardservice.board.application.port.out.comment.dto.CommentSaveDto;
+import mygroup.boardservice.board.application.port.out.comment.dto.CommentUpdateDto;
 import mygroup.boardservice.board.domain.Comment;
 import org.springframework.stereotype.Repository;
 
@@ -20,11 +22,12 @@ public class CommentRepository {
         return commentMapper.findAll();
     }
 
-    public int save(Comment comment){
-        return commentMapper.save(comment);
+    public Long save(CommentSaveDto commentSaveDto){
+        commentMapper.save(commentSaveDto);
+        return commentSaveDto.getId();
     }
 
-    public int update(Comment comment){ return commentMapper.update(comment); }
+    public void update(CommentUpdateDto commentUpdateDto){ commentMapper.update(commentUpdateDto); }
 
-    public int delete(Long id){ return commentMapper.delete(id); }
+    public void delete(Long id){ commentMapper.delete(id); }
 }

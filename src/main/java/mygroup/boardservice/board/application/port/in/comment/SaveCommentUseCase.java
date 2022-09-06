@@ -1,7 +1,7 @@
 package mygroup.boardservice.board.application.port.in.comment;
 
-import mygroup.boardservice.board.domain.Comment;
+import mygroup.boardservice.board.application.port.out.comment.dto.CommentSaveDto;
 
 public interface SaveCommentUseCase {
-    void saveComment(Comment comment);
+    Long saveComment(CommentSaveDto commentSaveDto);
 }
