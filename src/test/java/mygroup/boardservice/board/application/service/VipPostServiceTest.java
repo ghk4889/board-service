@@ -46,7 +46,7 @@ class VipPostServiceTest {
     @Test
     void saveVipPost() {
         VipPostSaveDto vipPostSaveDto = new VipPostSaveDto("Service 테스트", "Service Test 내용"
-                , "vipname", 7L, Date.valueOf("2022-09-07"), Date.valueOf("2022-09-07"));
+                , "vipname", 7, Date.valueOf("2022-09-07"), Date.valueOf("2022-09-07"));
         saveVipPostPort.saveVipPost(vipPostSaveDto);
         log.info( "insert 후 객체 id 값: " + vipPostSaveDto.getId());
     }
@@ -70,7 +70,7 @@ class VipPostServiceTest {
     void deleteVipPost() {
         //given
         VipPostSaveDto vipPostSaveDto = new VipPostSaveDto("삭제용 테스트", "삭제할 게시글의 내용", "vipname",
-                0L, Date.valueOf("2022-09-02"), Date.valueOf("2022-09-02"));
+                0, Date.valueOf("2022-09-02"), Date.valueOf("2022-09-02"));
         saveVipPostPort.saveVipPost(vipPostSaveDto);
 
         log.info("" + vipPostSaveDto.getId());

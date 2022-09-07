@@ -16,11 +16,11 @@ public class VipPostSaveDto {
     private String title;
     private String content;
     private String writer;
-    private Long viewCount;
+    private int viewCount;
     private Date createdDate;
     private Date modifiedDate;
 
-    public VipPostSaveDto(String title, String content, String writer, Long viewCount, Date createdDate, Date modifiedDate) {
+    public VipPostSaveDto(String title, String content, String writer, int viewCount, Date createdDate, Date modifiedDate) {
         this.title = title;
         this.content = content;
         this.writer = writer;
