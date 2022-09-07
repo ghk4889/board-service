@@ -42,7 +42,9 @@ public class VipPostService implements GetAllVipPostsUseCase, GetVipPostUseCase,
 
     @Transactional
     @Override
-    public void updateVipPost(VipPostUpdateDto vipPostUpdateDto) {
+    public void updateVipPost(Long id, VipPostForm.Request updateForm) {
+        updateForm.setId(id);
+        VipPostUpdateDto vipPostUpdateDto = updateForm.toUpdateEntity();
         updateVipPostPort.updateVipPost(vipPostUpdateDto);
     }
 

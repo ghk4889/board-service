@@ -38,5 +38,9 @@ public class VipPostApiController {
         return ResponseEntity.ok(saveVipPostUseCase.saveVipPost(saveForm));
     }
 
-
+    @PatchMapping("/vipposts/{id}")
+    public ResponseEntity edit(@PathVariable Long id, @RequestBody VipPostForm.Request updateForm){
+        updateVipPostUseCase.updateVipPost(id, updateForm);
+        return ResponseEntity.ok(id);
+    }
 }
