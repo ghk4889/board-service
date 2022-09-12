@@ -43,4 +43,10 @@ public class VipPostApiController {
         updateVipPostUseCase.updateVipPost(id, updateForm);
         return ResponseEntity.ok(id);
     }
+
+    @DeleteMapping("/vipposts/{id}")
+    public ResponseEntity delete(@PathVariable Long id){
+        deleteVipPostUseCase.deleteVipPost(id);
+        return ResponseEntity.ok(id);
+    }
 }
