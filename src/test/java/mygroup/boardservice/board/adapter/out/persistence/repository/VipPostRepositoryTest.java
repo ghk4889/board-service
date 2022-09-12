@@ -32,8 +32,8 @@ class VipPostRepositoryTest {
 
     @Test
     void insert() {
-        VipPostSaveDto vipPostSaveDto = new VipPostSaveDto("DTO 삽입 테스트", "새로 삽입한 DTO 게시글의 내용"
-                , "vipname", 7L, Date.valueOf("2022-09-06"), Date.valueOf("2022-09-06"));
+        VipPostSaveDto vipPostSaveDto = new VipPostSaveDto("viewCount is int 테스트", "viewCount 수정했음."
+                , "vipname", 0, Date.valueOf("2022-09-07"), Date.valueOf("2022-09-07"));
         vipPostMapper.save(vipPostSaveDto);
         log.info( "insert 후 객체 id 값: " + vipPostSaveDto.getId());
     }
@@ -57,7 +57,7 @@ class VipPostRepositoryTest {
     void delete() {
         //given
         VipPostSaveDto vipPostSaveDto = new VipPostSaveDto("삭제용 테스트", "삭제할 게시글의 내용", "vipname",
-                0L, Date.valueOf("2022-09-02"), Date.valueOf("2022-09-02"));
+                0, Date.valueOf("2022-09-02"), Date.valueOf("2022-09-02"));
         vipPostMapper.save(vipPostSaveDto);
 
         log.info("" + vipPostSaveDto.getId());

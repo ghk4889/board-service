@@ -13,7 +13,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 
-@MapperScan(basePackageClasses = BoardServiceApplication.class)
+//@MapperScan(basePackageClasses = BoardServiceApplication.class)
 @SpringBootApplication
 public class BoardServiceApplication {
 

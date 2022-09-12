@@ -1,6 +1,7 @@
 package mygroup.boardservice.board.application.service;
 
 import lombok.RequiredArgsConstructor;
+import mygroup.boardservice.board.adapter.in.web.form.VipPostForm;
 import mygroup.boardservice.board.application.port.in.vippost.*;
 import mygroup.boardservice.board.application.port.out.vippost.*;
 import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostSaveDto;
@@ -34,13 +35,16 @@ public class VipPostService implements GetAllVipPostsUseCase, GetVipPostUseCase,
 
     @Transactional
     @Override
-    public Long saveVipPost(VipPostSaveDto vipPostSaveDto) {
+    public Long saveVipPost(VipPostForm.Request saveForm) {
+        VipPostSaveDto vipPostSaveDto = saveForm.toSaveEntity();
         return saveVipPostPort.saveVipPost(vipPostSaveDto);
     }
 
     @Transactional
     @Override
-    public void updateVipPost(VipPostUpdateDto vipPostUpdateDto) {
+    public void updateVipPost(Long id, VipPostForm.Request updateForm) {
+        updateForm.setId(id);
+        VipPostUpdateDto vipPostUpdateDto = updateForm.toUpdateEntity();
         updateVipPostPort.updateVipPost(vipPostUpdateDto);
     }
 
