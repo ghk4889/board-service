@@ -32,18 +32,21 @@ public class VipPostApiController {
         return new ResponseEntity<>(vipPost,HttpStatus.OK);
     }
 
+    //create
     @PostMapping("/vipposts")
     public ResponseEntity save(@RequestBody VipPostForm.Request saveForm){
         //삽입한 게시글의 id 값이 반환됨.
         return ResponseEntity.ok(saveVipPostUseCase.saveVipPost(saveForm));
     }
 
+    //update
     @PatchMapping("/vipposts/{id}")
     public ResponseEntity edit(@PathVariable Long id, @RequestBody VipPostForm.Request updateForm){
         updateVipPostUseCase.updateVipPost(id, updateForm);
         return ResponseEntity.ok(id);
     }
 
+    //delete
     @DeleteMapping("/vipposts/{id}")
     public ResponseEntity delete(@PathVariable Long id){
         deleteVipPostUseCase.deleteVipPost(id);
