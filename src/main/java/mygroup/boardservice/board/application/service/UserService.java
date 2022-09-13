@@ -1,6 +1,7 @@
 package mygroup.boardservice.board.application.service;
 
 import lombok.RequiredArgsConstructor;
+import mygroup.boardservice.board.adapter.in.web.form.UserForm;
 import mygroup.boardservice.board.application.port.in.user.*;
 import mygroup.boardservice.board.application.port.out.user.*;
 import mygroup.boardservice.board.application.port.out.user.dto.UserSaveDto;
@@ -40,7 +41,8 @@ public class UserService implements DeleteUserUseCase, GetAllUserUseCase, GetSpe
 
     @Transactional
     @Override
-    public void updateUser(UserUpdateDto userUpdateDto) {
+    public void updateUser(UserForm.Request userForm) {
+        UserUpdateDto userUpdateDto = userForm.toUpdateEntity();
         updateUserPort.updateUser(userUpdateDto);
     }
 
