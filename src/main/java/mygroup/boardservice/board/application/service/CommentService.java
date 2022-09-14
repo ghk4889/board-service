@@ -7,6 +7,7 @@ import mygroup.boardservice.board.application.port.out.comment.*;
 import mygroup.boardservice.board.application.port.out.comment.dto.CommentSaveDto;
 import mygroup.boardservice.board.application.port.out.comment.dto.CommentUpdateDto;
 import mygroup.boardservice.board.domain.Comment;
+import mygroup.boardservice.board.domain.PostType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,31 +25,31 @@ public class CommentService implements DeleteCommentUseCase, GetAllCommentUseCas
     private final UpdateCommentPort updateCommentPort;
 
     @Override
-    public Comment getComment(Long commentId) {
-        return getSpecificCommentPort.getComment(commentId);
+    public Comment getComment(Long commentId, PostType postType) {
+        return getSpecificCommentPort.getComment(commentId, postType);
     }
 
     @Override
-    public List<Comment> getComments(Long postId) {
-        return getAllCommentPort.getComments(postId);
+    public List<Comment> getComments(Long postId, PostType postType) {
+        return getAllCommentPort.getComments(postId, postType);
     }
 
     @Transactional
     @Override
-    public Long saveComment(CommentForm.Request commentForm) {
+    public Long saveComment(CommentForm.Request commentForm, PostType postType) {
         CommentSaveDto commentSaveDto = commentForm.toSaveEntity();
-        return saveCommentPort.saveComment(commentSaveDto);
+        return saveCommentPort.saveComment(commentSaveDto, postType);
     }
 
     @Transactional
     @Override
-    public void updateComment(CommentUpdateDto commentUpdateDto) {
-        updateCommentPort.updateComment(commentUpdateDto);
+    public void updateComment(CommentUpdateDto commentUpdateDto, PostType postType) {
+        updateCommentPort.updateComment(commentUpdateDto, postType);
     }
 
     @Transactional
     @Override
-    public void deleteComment(Long commentId) {
-        deleteCommentPort.deleteComment(commentId);
+    public void deleteComment(Long commentId, PostType postType) {
+        deleteCommentPort.deleteComment(commentId, postType);
     }
 }
