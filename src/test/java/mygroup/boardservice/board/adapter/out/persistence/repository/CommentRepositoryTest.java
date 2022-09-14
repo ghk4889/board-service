@@ -32,15 +32,16 @@ class CommentRepositoryTest {
 
     @Test
     void findAll() {
-        List<Comment> comments = commentMapper.findAll();
+        Long postId = 2L;
+        List<Comment> comments = commentMapper.findAll(postId);
         comments.forEach(comment -> log.info(comment.toString()));
         Assertions.assertThat(comments).isNotNull();
     }
 
     @Test
     void save() {
-        CommentSaveDto commentSaveDto = new CommentSaveDto("save DTO Test!", "vipname", new Date(System.currentTimeMillis())
-                , new Date(System.currentTimeMillis()), 2L, 3L);
+        CommentSaveDto commentSaveDto = new CommentSaveDto("save vip_comment Test!", "vipname", new Date(System.currentTimeMillis())
+                , new Date(System.currentTimeMillis()), 3L, 0L);
 
         commentMapper.save(commentSaveDto);
         log.info("삽입된 comment의 id: " + commentSaveDto.getId());
@@ -51,11 +52,11 @@ class CommentRepositoryTest {
     @Test
     void update() {
         //given
-        CommentUpdateDto commentUpdateDto = new CommentUpdateDto(4L, "updated dto content", Date.valueOf("2022-09-07"));
+        CommentUpdateDto commentUpdateDto = new CommentUpdateDto(7L, "updated vip_comment content", Date.valueOf("2022-09-07"));
         //when
         commentMapper.update(commentUpdateDto);
         //then
-        Assertions.assertThat(commentMapper.findById(4L).getContent()).isEqualTo("updated dto content");
+        Assertions.assertThat(commentMapper.findById(7L).getContent()).isEqualTo("updated vip_comment content");
     }
 
     @Test
