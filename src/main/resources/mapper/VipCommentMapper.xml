@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mygroup.boardservice.board.adapter.out.persistence.mapper.CommentMapper">
+<mapper namespace="mygroup.boardservice.board.adapter.out.persistence.mapper.VipCommentMapper">
     <resultMap id="CommentResultMap" type="Comment">
         <constructor>
             <idArg column="id" javaType="long"/>

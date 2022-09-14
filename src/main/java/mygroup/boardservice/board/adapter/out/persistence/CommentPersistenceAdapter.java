@@ -6,6 +6,7 @@ import mygroup.boardservice.board.application.port.out.comment.*;
 import mygroup.boardservice.board.application.port.out.comment.dto.CommentSaveDto;
 import mygroup.boardservice.board.application.port.out.comment.dto.CommentUpdateDto;
 import mygroup.boardservice.board.domain.Comment;
+import mygroup.boardservice.board.domain.PostType;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,27 +20,27 @@ public class CommentPersistenceAdapter implements DeleteCommentPort, GetAllComme
 
 
     @Override
-    public Comment getComment(Long commentId) {
-        return commentRepository.findById(commentId);
+    public Comment getComment(Long commentId, PostType postType) {
+        return commentRepository.findById(commentId, postType);
     }
 
     @Override
-    public List<Comment> getComments(Long postId) {
-        return commentRepository.findAll(postId);
+    public List<Comment> getComments(Long postId, PostType postType) {
+        return commentRepository.findAll(postId, postType);
     }
 
     @Override
-    public Long saveComment(CommentSaveDto commentSaveDto) {
-        return commentRepository.save(commentSaveDto);
+    public Long saveComment(CommentSaveDto commentSaveDto, PostType postType) {
+        return commentRepository.save(commentSaveDto, postType);
     }
 
     @Override
-    public void updateComment(CommentUpdateDto commentUpdateDto) {
-        commentRepository.update(commentUpdateDto);
+    public void updateComment(CommentUpdateDto commentUpdateDto, PostType postType) {
+        commentRepository.update(commentUpdateDto, postType);
     }
 
     @Override
-    public void deleteComment(Long commentId) {
-        commentRepository.delete(commentId);
+    public void deleteComment(Long commentId, PostType postType) {
+        commentRepository.delete(commentId, postType);
     }
 }
