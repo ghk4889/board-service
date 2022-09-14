@@ -18,8 +18,8 @@ public class CommentRepository {
         return commentMapper.findById(commentId);
     }
 
-    public List<Comment> findAll(){
-        return commentMapper.findAll();
+    public List<Comment> findAll(Long postId){
+        return commentMapper.findAll(postId);
     }
 
     public Long save(CommentSaveDto commentSaveDto){

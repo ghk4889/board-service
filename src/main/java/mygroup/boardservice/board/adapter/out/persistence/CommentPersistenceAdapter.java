@@ -24,8 +24,8 @@ public class CommentPersistenceAdapter implements DeleteCommentPort, GetAllComme
     }
 
     @Override
-    public List<Comment> getComments() {
-        return commentRepository.findAll();
+    public List<Comment> getComments(Long postId) {
+        return commentRepository.findAll(postId);
     }
 
     @Override

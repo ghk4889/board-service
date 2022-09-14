@@ -21,9 +21,10 @@
         WHERE id=#{id};
     </select>
 
-    <select id="findAll" resultMap="CommentResultMap">
+    <select id="findAll" parameterType="Long" resultMap="CommentResultMap">
         SELECT id, content, writer, created_date, modified_date, post_id, reply_target_id
-        FROM comment;
+        FROM comment
+        WHERE post_id = #{postId};
     </select>
 
     <insert id="save" parameterType="CommentSaveDto" useGeneratedKeys="true" keyProperty="id">

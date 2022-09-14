@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface CommentMapper {
     Comment findById(Long id);
-    List<Comment> findAll();
+    List<Comment> findAll(Long postId);
     void save(CommentSaveDto commentSaveDto);
     void update(CommentUpdateDto commentUpdateDto);
     void delete(Long id);

@@ -5,5 +5,5 @@ import mygroup.boardservice.board.domain.Comment;
 import java.util.List;
 
 public interface GetAllCommentPort {
-    List<Comment> getComments();
+    List<Comment> getComments(Long postId);
 }

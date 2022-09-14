@@ -28,8 +28,8 @@ public class CommentService implements DeleteCommentUseCase, GetAllCommentUseCas
     }
 
     @Override
-    public List<Comment> getComments() {
-        return getAllCommentPort.getComments();
+    public List<Comment> getComments(Long postId) {
+        return getAllCommentPort.getComments(postId);
     }
 
     @Transactional
