@@ -1,6 +1,7 @@
 package mygroup.boardservice.board.application.service;
 
 import lombok.RequiredArgsConstructor;
+import mygroup.boardservice.board.adapter.in.web.form.CommentForm;
 import mygroup.boardservice.board.application.port.in.comment.*;
 import mygroup.boardservice.board.application.port.out.comment.*;
 import mygroup.boardservice.board.application.port.out.comment.dto.CommentSaveDto;
@@ -34,7 +35,8 @@ public class CommentService implements DeleteCommentUseCase, GetAllCommentUseCas
 
     @Transactional
     @Override
-    public Long saveComment(CommentSaveDto commentSaveDto) {
+    public Long saveComment(CommentForm.Request commentForm) {
+        CommentSaveDto commentSaveDto = commentForm.toSaveEntity();
         return saveCommentPort.saveComment(commentSaveDto);
     }
 
