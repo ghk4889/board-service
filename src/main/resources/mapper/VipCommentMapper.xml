@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mygroup.boardservice.board.adapter.out.persistence.mapper.CommentMapper">
+<mapper namespace="mygroup.boardservice.board.adapter.out.persistence.mapper.VipCommentMapper">
     <resultMap id="CommentResultMap" type="Comment">
         <constructor>
             <idArg column="id" javaType="long"/>
@@ -17,28 +17,29 @@
 
     <select id="findById" parameterType="Long" resultMap="CommentResultMap">
         SELECT id, content, writer, created_date, modified_date, post_id, reply_target_id
-        FROM comment
+        FROM vip_comment
         WHERE id=#{id};
     </select>
 
-    <select id="findAll" resultMap="CommentResultMap">
+    <select id="findAll" parameterType="Long" resultMap="CommentResultMap">
         SELECT id, content, writer, created_date, modified_date, post_id, reply_target_id
-        FROM comment;
+        FROM vip_comment
+        WHERE post_id = #{postId};
     </select>
 
     <insert id="save" parameterType="CommentSaveDto" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO comment(content, writer, created_date, modified_date, post_id, reply_target_id)
+        INSERT INTO vip_comment(content, writer, created_date, modified_date, post_id, reply_target_id)
         VALUES(#{content}, #{writer}, #{createdDate}, #{modifiedDate}, #{postId}, #{replyTargetId});
     </insert>
 
     <update id="update" parameterType="CommentUpdateDto" >
-        UPDATE comment
+        UPDATE vip_comment
         SET content = #{content},
             modified_date = #{modifiedDate}
         WHERE id = #{id};
     </update>
 
     <delete id="delete" parameterType="long">
-        DELETE FROM comment WHERE id = #{id};
+        DELETE FROM vip_comment WHERE id = #{id};
     </delete>
 </mapper>
