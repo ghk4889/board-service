@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mygroup.boardservice.board.application.port.out.comment.dto.CommentSaveDto;
-import mygroup.boardservice.board.domain.Comment;
+import mygroup.boardservice.board.application.port.out.comment.dto.CommentUpdateDto;
 import mygroup.boardservice.board.domain.User;
 import mygroup.boardservice.board.domain.VipPost;
 
@@ -34,6 +34,11 @@ public class CommentForm {
         public CommentSaveDto toSaveEntity() {
             return new CommentSaveDto(content, writer, new Date(System.currentTimeMillis())
                     , new Date(System.currentTimeMillis()), postId, replyTargetId);
+        }
+
+        /* Dto -> Entity */
+        public CommentUpdateDto toUpdateEntity() {
+            return new CommentUpdateDto(id, content, new Date(System.currentTimeMillis()));
         }
     }
 }

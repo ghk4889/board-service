@@ -40,5 +40,17 @@ public class CommentApiController {
         return ResponseEntity.ok(cid);
     }
 
+    @PatchMapping("vipposts/{pid}/comments/{cid}")
+    public ResponseEntity update(@PathVariable Long cid, @RequestBody CommentForm.Request commentForm){
+        updateCommentUseCase.updateComment(cid, commentForm, PostType.VIP);
+        return ResponseEntity.ok(cid);
+    }
+
+    @DeleteMapping("vipposts/{pid}/comments/{cid}")
+    public ResponseEntity delete(@PathVariable Long cid){
+        deleteCommentUseCase.deleteComment(cid, PostType.VIP);
+        return ResponseEntity.ok(cid);
+    }
 
 }
+
