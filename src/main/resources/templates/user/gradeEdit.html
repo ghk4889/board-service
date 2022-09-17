@@ -5,7 +5,7 @@
 <head th:replace="~{fragment :: head_for_signup}">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>닉네임 변경 화면</title>
+    <title>등급 변경 화면</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -24,7 +24,7 @@
 <div class="container">
     <div class="py-5 text-center">
 
-        <h2>닉네임 변경</h2>
+        <h2>등급 변경</h2>
     </div>
 
     <div class="row justify-content-center">
@@ -39,15 +39,38 @@
 
                 <div class="mb-4">
                     <label for="nickname">닉네임</label>
-                    <input type="text" class="form-control" id="nickname" value="Nickname" required="" >
+                    <input type="text" class="form-control" id="nickname" value="Nickname" required="" readonly>
                 </div>
 
                 <div class="mb-5">
-                    <label for="grade">등급</label>
+                    <label for="grade">현재 등급</label>
                     <input type="text" class="form-control" id="grade" value="vip" required="" readonly>
                 </div>
 
-                <div class="row w-100 justify-content-center">
+
+                <div class="card" style="width: 18rem; mb-5">
+                    <div class="card-header">
+                        등급을 선택하세요
+                    </div>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="form-check-inline ">
+                                <input type="radio" class="form-check-input" id="gradeCommon" value="common" name="gradeRadio" readonly>
+                                <label for="gradeCommon" class="form-check-label">common</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="form-check-inline ">
+                                <input type="radio" class="form-check-input" id="gradeVip" value="vip" name="gradeRadio" readonly>
+                                <label for="gradeVip" class="form-check-label">vip</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="row w-100 justify-content-center my-5">
                     <button class="col-3 mx-3 btn btn-outline-info btn-lg " type="submit">변경 완료</button>
                     <a href="#" class="col-3 mx-3 btn btn-danger btn-lg">나가기</a>
                 </div>
