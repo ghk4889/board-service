@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Component
-public class PostPersistenceAdapter implements GetSpecificPostPort, GetAllPostsPort, SavePostPort
+public class PostPersistenceAdapter implements GetSpecificPostPort, GetAllPostsDetailPort, SavePostPort
                                                     , UpdatePostPort, DeletePostPort {
 
     private final PostRepository postRepository;
@@ -24,7 +24,7 @@ public class PostPersistenceAdapter implements GetSpecificPostPort, GetAllPostsP
     }
 
     @Override
-    public List<Post> getPosts(PostType postType) {
+    public List<Post> getDetailPosts(PostType postType) {
         return postRepository.findAll(postType);
     }
 

@@ -5,6 +5,6 @@ import mygroup.boardservice.board.domain.PostType;
 
 import java.util.List;
 
-public interface GetAllPostsPort {
-    List<Post> getPosts(PostType postType);
+public interface GetAllPostsDetailPort {
+    List<Post> getDetailPosts(PostType postType);
 }
