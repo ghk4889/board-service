@@ -44,8 +44,8 @@ public class CommentService implements DeleteCommentUseCase, GetAllCommentUseCas
     @Transactional
     @Override
     public void updateComment(Long cid, CommentForm.Request commentForm, PostType postType) {
-        commentForm.setId(cid);
-        CommentUpdateDto commentUpdateDto = commentForm.toUpdateEntity();
+
+        CommentUpdateDto commentUpdateDto = commentForm.toUpdateEntity(cid);
         updateCommentPort.updateComment(commentUpdateDto, postType);
     }
 
