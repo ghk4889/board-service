@@ -16,15 +16,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostApiController {
 
-    private final GetPostUseCase getPostUseCase;
+    private final GetSpecificPostUseCase getPostUseCase;
     private final DeletePostUseCase deletePostUseCase;
-    private final GetAllPostsUseCase getAllPostsUseCase;
+    private final GetAllPostsDetailUseCase getAllPostsUseCase;
     private final SavePostUseCase savePostUseCase;
     private final UpdatePostUseCase updatePostUseCase;
 
     @GetMapping     //vippost 전체 게시글 조회
     public ResponseEntity<List<Post>> getPosts(@PathVariable PostType postType){
-        List<Post> posts = getAllPostsUseCase.getPosts(postType);
+        List<Post> posts = getAllPostsUseCase.getDetailPosts(postType);
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 

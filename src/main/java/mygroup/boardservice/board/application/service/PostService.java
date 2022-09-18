@@ -15,7 +15,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class PostService implements GetAllPostsUseCase, GetPostUseCase, SavePostUseCase
+public class PostService implements GetAllPostsDetailUseCase, GetSpecificPostUseCase, SavePostUseCase
                             , UpdatePostUseCase, DeletePostUseCase {
 
     private final GetAllPostsPort getAllPostsPort;
@@ -31,7 +31,7 @@ public class PostService implements GetAllPostsUseCase, GetPostUseCase, SavePost
     }
 
     @Override
-    public List<Post> getPosts(PostType postType) {
+    public List<Post> getDetailPosts(PostType postType) {
         return getAllPostsPort.getPosts(postType);
     }
 

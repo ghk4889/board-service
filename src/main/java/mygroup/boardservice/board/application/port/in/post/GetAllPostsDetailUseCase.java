@@ -6,6 +6,6 @@ import mygroup.boardservice.board.domain.PostType;
 
 import java.util.List;
 
-public interface GetAllPostsUseCase {
-    List<Post> getPosts(PostType postType);
+public interface GetAllPostsDetailUseCase {
+    List<Post> getDetailPosts(PostType postType);
 }
