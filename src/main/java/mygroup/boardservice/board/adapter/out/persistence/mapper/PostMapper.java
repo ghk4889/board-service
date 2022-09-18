@@ -14,8 +14,10 @@ import java.util.List;
 public interface PostMapper {
 
     Post findById(Long postId);
-    List<Post> findAll();
+    List<Post> findAll(int startRow, int rowSize);
+    List<Post> findAllDetail();
     void save(PostSaveDto postSaveDto);
     void update(PostUpdateDto postUpdateDto);
     void delete(Long id);
+
 }

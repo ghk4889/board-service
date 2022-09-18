@@ -26,7 +26,7 @@ public class Post {
     @Setter
     private List<Comment> comments;
 
-    //select 할 때 사용됨
+    //select 할 때 사용됨(Detail)
     public Post(Long id, String title, String content, String writer, Long viewCount, Date createdDate,
                 Date modifiedDate, User user) {
         this.id = id;
@@ -37,5 +37,17 @@ public class Post {
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
         this.user = user;
+    }
+
+    //select all 할 때 사용됨
+    public Post(Long id, String title, String content, String writer, Long viewCount, Date createdDate,
+                Date modifiedDate) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.viewCount = viewCount;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
     }
 }

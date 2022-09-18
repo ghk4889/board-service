@@ -4,7 +4,7 @@
 
 <mapper namespace="mygroup.boardservice.board.adapter.out.persistence.mapper.VipPostMapper">
 
-    <resultMap id="PostResultMap" type="Post">
+    <resultMap id="DetailPostResultMap" type="Post">
         <constructor>
             <idArg column="vpid" javaType="long" />
             <arg column="title" javaType="String" />
@@ -43,8 +43,20 @@
         </constructor>
     </resultMap>
 
+    <resultMap id="PostResultMap" type="Post">
+        <constructor>
+            <idArg column="id" javaType="long" />
+            <arg column="title" javaType="String" />
+            <arg column="content" javaType="String"/>
+            <arg column="writer" javaType="String" />
+            <arg column="view_count" javaType="long"/>
+            <arg column="created_date" javaType="java.sql.Date"/>
+            <arg column="modified_date" javaType="java.sql.Date"/>
+        </constructor>
+    </resultMap>
 
-    <select id="findById" parameterType="Long" resultMap="PostResultMap" >
+
+    <select id="findById" parameterType="Long" resultMap="DetailPostResultMap" >
         SELECT vp.id as vpid , vp.title, vp.content as vcontent, vp.writer, vp.view_count, vp.created_date, vp.modified_date
         , u.id as uid, u.email, u.nickname, u.created_date as u_created_date, u.modified_date as u_modified_date, u.grade
         , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.reply_target_id
@@ -52,8 +64,15 @@
         WHERE vp.id=#{id} AND u.nickname = vp.writer;
     </select>
 
+    <select id="findAll" parameterType="int" resultMap="PostResultMap">
+        SELECT id, title, content, writer, view_count, created_date, modified_date
+        FROM vip_post
+        LIMIT #{arg0}, #{arg1}
+        ;
+    </select>
 
-    <select id="findAll" resultMap="PostResultMap" >
+
+    <select id="findAllDetail" resultMap="DetailPostResultMap" >
         SELECT vp.id as vpid , vp.title, vp.content as vcontent, vp.writer, vp.view_count, vp.created_date, vp.modified_date
         , u.id as uid, u.email, u.nickname, u.created_date as u_created_date, u.modified_date as u_modified_date, u.grade
         , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.reply_target_id

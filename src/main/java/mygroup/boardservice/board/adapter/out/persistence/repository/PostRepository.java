@@ -27,8 +27,12 @@ public class PostRepository {
         return getPostMapper(postType).findById(postId);
     }
 
-    public List<Post> findAll(PostType postType){
-        return getPostMapper(postType).findAll();
+    public List<Post> findAll(int startRow, int rowSize, PostType postType){
+        return getPostMapper(postType).findAll(startRow, rowSize);
+    }
+
+    public List<Post> findAllDetail(PostType postType){
+        return getPostMapper(postType).findAllDetail();
     }
 
     public Long save(PostSaveDto postSaveDto, PostType postType){

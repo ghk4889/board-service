@@ -29,7 +29,7 @@ class VipPostRepositoryTest {
 
     @Test
     void findAll(){
-        vipPostMapper.findAll()
+        vipPostMapper.findAllDetail()
                 .forEach( vipPost -> log.info(vipPost.toString()) );
     }
 

@@ -27,6 +27,10 @@ class PostPersistenceAdapterTest {
 
     @Test
     void getPosts() {
+        postRepository.findAll(0, 4, PostType.VIP)
+                .forEach(post -> log.info(post.toString()));
+
+
     }
 
     @Test
