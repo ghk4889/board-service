@@ -2,8 +2,11 @@ package mygroup.boardservice.board.adapter.out.persistence.repository;
 
 import lombok.extern.slf4j.Slf4j;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.VipPostMapper;
+import mygroup.boardservice.board.application.port.out.post.dto.PostSaveDto;
+import mygroup.boardservice.board.application.port.out.post.dto.PostUpdateDto;
 import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostSaveDto;
 import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostUpdateDto;
+import mygroup.boardservice.board.domain.Post;
 import mygroup.boardservice.board.domain.VipPost;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,18 +35,18 @@ class VipPostRepositoryTest {
 
     @Test
     void insert() {
-        VipPostSaveDto vipPostSaveDto = new VipPostSaveDto("viewCount is int 테스트", "viewCount 수정했음."
+        PostSaveDto postSaveDto = new PostSaveDto("viewCount is int 테스트", "viewCount 수정했음."
                 , "vipname", 0, Date.valueOf("2022-09-07"), Date.valueOf("2022-09-07"));
-        vipPostMapper.save(vipPostSaveDto);
-        log.info( "insert 후 객체 id 값: " + vipPostSaveDto.getId());
+        vipPostMapper.save(postSaveDto);
+        log.info( "insert 후 객체 id 값: " + postSaveDto.getId());
     }
 
     @Test
     void update() {
         //given
-        VipPost vipPost = vipPostMapper.findById(6L);
-        log.info(vipPost.toString());
-        VipPostUpdateDto updateForm = new VipPostUpdateDto(vipPost.getId(), "update dto title"
+        Post post = vipPostMapper.findById(6L);
+        log.info(post.toString());
+        PostUpdateDto updateForm = new PostUpdateDto(post.getId(), "update dto title"
                                 , "update dto content", Date.valueOf("2022-09-09"));
 
         //when
@@ -56,17 +59,17 @@ class VipPostRepositoryTest {
     @Test
     void delete() {
         //given
-        VipPostSaveDto vipPostSaveDto = new VipPostSaveDto("삭제용 테스트", "삭제할 게시글의 내용", "vipname",
+        PostSaveDto postSaveDto = new PostSaveDto("삭제용 테스트", "삭제할 게시글의 내용", "vipname",
                 0, Date.valueOf("2022-09-02"), Date.valueOf("2022-09-02"));
-        vipPostMapper.save(vipPostSaveDto);
+        vipPostMapper.save(postSaveDto);
 
-        log.info("" + vipPostSaveDto.getId());
+        log.info("" + postSaveDto.getId());
 
         //when
-        vipPostMapper.delete(vipPostSaveDto.getId());
+        vipPostMapper.delete(postSaveDto.getId());
 
         //then
-        Assertions.assertThat(vipPostMapper.findById(vipPostSaveDto.getId())).isEqualTo(null);
+        Assertions.assertThat(vipPostMapper.findById(postSaveDto.getId())).isEqualTo(null);
     }
 
 }

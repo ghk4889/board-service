@@ -1,41 +1,31 @@
-package mygroup.boardservice.board.domain;
+package mygroup.boardservice.board.application.port.out.post.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
-import java.util.List;
+
 
 @NoArgsConstructor
 @Getter
 @ToString
-public class Post {
+public class PostSaveDto {
 
-    private Long id;
+    private Long id; //insert가 끝나면 auto increment된 id 값이 들어간다.
     private String title;
     private String content;
     private String writer;
-    private Long viewCount;
+    private int viewCount;
     private Date createdDate;
     private Date modifiedDate;
 
-    private User user;
-
-    @Setter
-    private List<Comment> comments;
-
-    //select 할 때 사용됨
-    public Post(Long id, String title, String content, String writer, Long viewCount, Date createdDate,
-                Date modifiedDate, User user) {
-        this.id = id;
+    public PostSaveDto(String title, String content, String writer, int viewCount, Date createdDate, Date modifiedDate) {
         this.title = title;
         this.content = content;
         this.writer = writer;
         this.viewCount = viewCount;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
-        this.user = user;
     }
 }
