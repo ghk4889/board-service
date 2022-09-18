@@ -4,6 +4,6 @@ import mygroup.boardservice.board.domain.Post;
 import mygroup.boardservice.board.domain.PostType;
 
 
-public interface GetPostUseCase {
+public interface GetSpecificPostUseCase {
     Post getPost(Long postId, PostType postType);
 }
