@@ -5,6 +5,7 @@ import mygroup.boardservice.board.adapter.in.web.form.PostForm;
 import mygroup.boardservice.board.application.port.in.post.*;
 import mygroup.boardservice.board.domain.Post;
 import mygroup.boardservice.board.domain.PostType;
+import mygroup.boardservice.common.Pagination;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +19,23 @@ public class PostApiController {
 
     private final GetSpecificPostUseCase getPostUseCase;
     private final DeletePostUseCase deletePostUseCase;
-    private final GetAllPostsDetailUseCase getAllPostsUseCase;
+    private final GetAllPostsDetailUseCase getAllPostsDetailUseCase;
+    private final GetAllPostsUseCase getAllPostsUseCase;
     private final SavePostUseCase savePostUseCase;
     private final UpdatePostUseCase updatePostUseCase;
+    private final GetTotalPostRowNumUseCase getTotalPostRowNumUseCase;
 
-    @GetMapping     //vippost 전체 게시글 조회
-    public ResponseEntity<List<Post>> getPosts(@PathVariable PostType postType){
-        List<Post> posts = getAllPostsUseCase.getDetailPosts(postType);
+    @GetMapping("/detail")     //vippost 전체 게시글 조회
+    public ResponseEntity<List<Post>> getDetailPosts(@PathVariable PostType postType){
+        List<Post> posts = getAllPostsDetailUseCase.getDetailPosts(postType);
+        return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Post>> getPosts(@PathVariable PostType postType, @RequestParam int currentPageNum){
+
+        Pagination pagination = new Pagination(3, currentPageNum, getTotalPostRowNumUseCase.getTotalRowNum(postType));
+        List<Post> posts = getAllPostsUseCase.getPosts(pagination, postType);
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 

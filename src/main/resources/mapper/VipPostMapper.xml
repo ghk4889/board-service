@@ -80,7 +80,7 @@
         WHERE u.nickname = vp.writer ;
     </select>
 
-    <select id="getTotalRowNum" >
+    <select id="getTotalRowNum" resultType="int">
         SELECT count(*) FROM vip_post;
     </select>
 

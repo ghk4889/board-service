@@ -39,7 +39,7 @@ public class Post {
         this.user = user;
     }
 
-    //select all 할 때 사용됨
+    //paging된 select all 할 때 사용됨
     public Post(Long id, String title, String content, String writer, Long viewCount, Date createdDate,
                 Date modifiedDate) {
         this.id = id;
