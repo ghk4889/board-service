@@ -14,7 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Component
 public class PostPersistenceAdapter implements GetSpecificPostPort, GetAllPostsDetailPort, SavePostPort
-                                                    , UpdatePostPort, DeletePostPort, GetAllPostsPort {
+                                                    , UpdatePostPort, DeletePostPort, GetAllPostsPort
+                                                    , GetTotalPostRowNumPort {
 
     private final PostRepository postRepository;
 
@@ -49,4 +50,8 @@ public class PostPersistenceAdapter implements GetSpecificPostPort, GetAllPostsD
     }
 
 
+    @Override
+    public int getTotalRowNum(PostType postType) {
+        return postRepository.getTotalRowNum(postType);
+    }
 }

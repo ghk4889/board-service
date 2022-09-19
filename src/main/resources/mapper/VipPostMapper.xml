@@ -80,6 +80,10 @@
         WHERE u.nickname = vp.writer ;
     </select>
 
+    <select id="getTotalRowNum" >
+        SELECT count(*) FROM vip_post;
+    </select>
+
     <insert id="save" parameterType="PostSaveDto" useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO vip_post(title, content, writer, view_count, created_date, modified_date)
         VALUES(#{title}, #{content}, #{writer}, #{viewCount}, #{createdDate}, #{modifiedDate});

@@ -16,6 +16,7 @@ public interface PostMapper {
     Post findById(Long postId);
     List<Post> findAll(int startRow, int rowSize);
     List<Post> findAllDetail();
+    int getTotalRowNum();
     void save(PostSaveDto postSaveDto);
     void update(PostUpdateDto postUpdateDto);
     void delete(Long id);

@@ -17,7 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class PostService implements GetAllPostsDetailUseCase, GetSpecificPostUseCase, SavePostUseCase
-                            , UpdatePostUseCase, DeletePostUseCase, GetAllPostsUseCase {
+                            , UpdatePostUseCase, DeletePostUseCase, GetAllPostsUseCase
+                            , GetTotalPostRowNumUseCase {
 
     private final GetAllPostsDetailPort getAllPostsDetailPort;
     private final GetSpecificPostPort getSpecificPostPort;
@@ -25,6 +26,7 @@ public class PostService implements GetAllPostsDetailUseCase, GetSpecificPostUse
     private final UpdatePostPort updatePostPort;
     private final DeletePostPort deletePostPort;
     private final GetAllPostsPort getAllPostsPort;
+    private final GetTotalPostRowNumPort getTotalPostRowNumPort;
 
 
     @Override
@@ -63,4 +65,8 @@ public class PostService implements GetAllPostsDetailUseCase, GetSpecificPostUse
     }
 
 
+    @Override
+    public int getTotalRowNum(PostType postType) {
+        return getTotalPostRowNumPort.getTotalRowNum(postType);
+    }
 }
