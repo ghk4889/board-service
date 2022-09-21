@@ -4,13 +4,17 @@ package mygroup.boardservice.board.adapter.in.web;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mygroup.boardservice.board.application.port.in.post.GetAllPostsDetailUseCase;
+import mygroup.boardservice.board.application.port.in.post.GetAllPostsUseCase;
 import mygroup.boardservice.board.application.port.in.post.GetSpecificPostUseCase;
+import mygroup.boardservice.board.application.port.in.post.GetTotalPostRowNumUseCase;
 import mygroup.boardservice.board.domain.Post;
 import mygroup.boardservice.board.domain.PostType;
+import mygroup.boardservice.common.Pagination;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Locale;
@@ -21,13 +25,18 @@ import java.util.Locale;
 @Slf4j
 public class PostController {
 
-    private final GetAllPostsDetailUseCase getAllPostsUseCase;
+    private final GetAllPostsUseCase getAllPostsUseCase;
     private final GetSpecificPostUseCase getSpecificPostUseCase;
+    private final GetTotalPostRowNumUseCase getTotalPostRowNumUseCase;
 
     @GetMapping("/")
     public String index(Model model){
-        List<Post> vipposts = getAllPostsUseCase.getDetailPosts(PostType.VIP);
-//        List<Post> commonposts = getAllPostsUseCase.getPosts(PostType.COMMON);
+
+        // totalRowCnt는 index.html에서 필요 없으므로 임의의 수를 줬다.
+        List<Post> vipposts = getAllPostsUseCase
+                .getPosts(new Pagination(5,1, 1), PostType.VIP);
+
+        //List<Post> commonposts = getAllPostsUseCase.getPosts(new Pagination(5,1, 1), PostType.COMMON);
 
         model.addAttribute("vipposts", vipposts);
 
@@ -37,9 +46,13 @@ public class PostController {
 
     //게시글 목록 페이지
     @GetMapping("/{postType}posts")
-    public String posts(@PathVariable PostType postType, Model model){
-        List<Post> posts = getAllPostsUseCase.getDetailPosts(postType);
+    public String posts(@PathVariable PostType postType, Model model
+                    , @RequestParam(defaultValue = "1") int currentPageNum){
+
+        Pagination pagination = new Pagination(currentPageNum, getTotalPostRowNumUseCase.getTotalRowNum(postType));
+        List<Post> posts = getAllPostsUseCase.getPosts(pagination, postType);
         model.addAttribute("posts", posts);
+        model.addAttribute("pagination", pagination);
         return "posts/"+postType.name().toLowerCase(Locale.ROOT)+"posts";
     }
 

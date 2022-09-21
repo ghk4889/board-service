@@ -32,7 +32,8 @@ public class PostApiController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Post>> getPosts(@PathVariable PostType postType, @RequestParam int currentPageNum){
+    public ResponseEntity<List<Post>> getPosts(@PathVariable PostType postType
+            , @RequestParam(defaultValue = "1") int currentPageNum){
 
         Pagination pagination = new Pagination(3, currentPageNum, getTotalPostRowNumUseCase.getTotalRowNum(postType));
         List<Post> posts = getAllPostsUseCase.getPosts(pagination, postType);

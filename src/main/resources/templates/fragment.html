@@ -40,19 +40,31 @@
 <body>
 
 <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Board Project</a>
+    <a class="navbar-brand" href="/">Board Project</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="#">일반 게시판</a>
-            <a class="nav-item nav-link" href="#">VIP 게시판</a>
+            <a class="nav-item nav-link" href="/vipposts">VIP 게시판</a>
             <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </div>
     </div>
 </nav>
+
+<!--회원 정보 카드-->
+<div th:fragment="userCard" class="col mx-5 my-5">
+    <div class="card text-center" style="width: 15rem;">
+        <div class="card-body">
+            <h5 class="card-title">로그인 하시면 게시글 작성이 가능합니다.</h5>
+            <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+            <a href="#" class="btn btn-primary my-3">로그인</a>
+            <a href="#" class="btn btn-info">회원 가입</a>
+        </div>
+    </div>
+</div>
 
 
 

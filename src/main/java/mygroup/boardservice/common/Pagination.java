@@ -10,20 +10,20 @@ public class Pagination {
 
     public Pagination(int currentPageNum, int totalRowCnt) {
         this.pageListSize = 5;
-        this.rowSize = 20;
-        pageInfo(currentPageNum, totalRowCnt);
+        this.rowSize = 10;
+        initCalc(currentPageNum, totalRowCnt);
     }
 
     public Pagination(int rowSize, int currentPageNum, int totalRowCnt) {
         this.pageListSize = 5;
         this.rowSize = rowSize;
-        pageInfo(currentPageNum, totalRowCnt);
+        initCalc(currentPageNum, totalRowCnt);
     }
 
     public Pagination(int pageListSize, int rowSize, int currentPageNum, int totalRowCnt) {
         this.pageListSize = pageListSize;
         this.rowSize = rowSize;
-        pageInfo(currentPageNum, totalRowCnt);
+        initCalc(currentPageNum, totalRowCnt);
     }
 
     private int currentPageNum;     //현재 보고 있는 페이지의 번호
@@ -39,9 +39,11 @@ public class Pagination {
     private boolean prev;           //'이전' 페이지 리스트 여부
     private boolean next;           //'다음' 페이지 리스트 여부
 
-    public void pageInfo(int currentPageNum, int totalRowCnt) {
+
+    public void initCalc(int currentPageNum, int totalRowCnt) {
         this.currentPageNum = currentPageNum;
-        this.pageListNum = (currentPageNum % pageListSize !=0) ? currentPageNum/pageListSize + 1 : currentPageNum/pageListSize;
+        this.pageListNum = ((currentPageNum - 1) / pageListSize) + 1; //아래 주석처리한 식과 동일한 결과를 반환한다.
+        //(currentPageNum % pageListSize !=0) ? currentPageNum/pageListSize + 1 : currentPageNum/pageListSize;
         this.totalRowCnt = totalRowCnt;
         this.startRow = (currentPageNum - 1) * rowSize;
         this.totalPageCnt = (int) Math.ceil(totalRowCnt/ (float)rowSize);	        //전체 페이지수

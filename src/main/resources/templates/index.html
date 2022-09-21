@@ -52,14 +52,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="post : ${posts}">
-                        <td><a href="post.html" th:href="@{/basic/posts/{postId}(postId=${post.postId})}"
-                               th:text="${post.postId}">번호</a></td>
-                        <td><a href="post.html" th:href="@{|/basic/posts/${post.postId}|}"
-                               th:text="${post.postName}">제목목목목</a></td>
-                        <td>작성자</td>
-                        <td th:text="${post.regDate}">2022-08-16</td>
-                        <td th:text="${post.viewCnt}">8</td>
+                    <tr th:each="commonpost : ${commonposts}">
+                        <td><a href="post.html" th:href="#"
+                               th:text="${commonpost.id}">번호</a></td>
+                        <td><a href="post.html" th:href="#"
+                               th:text="${commonpost.title}">제목목목목</a></td>
+                        <td th:text="${commonpost.writer}">작성자</td>
+                        <td th:text="${commonpost.createdDate}">2022-08-16</td>
+                        <td th:text="${commonpost.viewCount}">8</td>
                     </tr>
                     </tbody>
                 </table>
@@ -79,19 +79,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="post : ${posts}">
-                        <td><a href="post.html" th:href="@{/basic/posts/{postId}(postId=${post.postId})}"
-                               th:text="${post.postId}">번호</a></td>
-                        <td><a href="post.html" th:href="@{|/basic/posts/${post.postId}|}"
-                               th:text="${post.postName}">제목목목목</a></td>
-                        <td>작성자</td>
-                        <td th:text="${post.regDate}">2022-08-16</td>
-                        <td th:text="${post.viewCnt}">8</td>
+                    <tr th:each="vippost : ${vipposts}">
+                        <td><a href="post.html" th:href="@{#}"
+                               th:text="${vippost.id}">번호</a></td>
+                        <td><a href="post.html" th:href="@{#}"
+                               th:text="${vippost.title}">제목목목목</a></td>
+                        <td th:text="${vippost.writer}">작성자</td>
+                        <td th:text="${vippost.createdDate}">2022-08-16</td>
+                        <td th:text="${vippost.viewCount}">8</td>
                     </tr>
                     </tbody>
                 </table>
 <!--                <p th:else="${}">VIP 회원만 이용가능합니다.</p></br>-->
-<!--                <a th:if="${}" href="#" class="float-right">VIP 게시판 전체 보기</a>-->
+                <a href="/vipposts" class="float-right">VIP 게시판 전체 보기</a>
             </div>
         </div>
 
@@ -108,6 +108,8 @@
                 </div>
             </div>
         </div>
+
+
 
     </div>
 
