@@ -5,6 +5,7 @@ import mygroup.boardservice.board.adapter.in.web.form.PostForm;
 import mygroup.boardservice.board.application.port.in.post.*;
 import mygroup.boardservice.board.application.port.out.post.*;
 import mygroup.boardservice.board.application.port.out.post.dto.PostSaveDto;
+import mygroup.boardservice.board.application.port.out.post.dto.PostSearchDto;
 import mygroup.boardservice.board.application.port.out.post.dto.PostUpdateDto;
 import mygroup.boardservice.board.domain.Post;
 import mygroup.boardservice.board.domain.PostType;
@@ -18,7 +19,7 @@ import java.util.List;
 @Service
 public class PostService implements GetAllPostsDetailUseCase, GetSpecificPostUseCase, SavePostUseCase
                             , UpdatePostUseCase, DeletePostUseCase, GetAllPostsUseCase
-                            , GetTotalPostRowNumUseCase {
+                            , GetTotalPostRowNumUseCase, SearchPostsUseCase {
 
     private final GetAllPostsDetailPort getAllPostsDetailPort;
     private final GetSpecificPostPort getSpecificPostPort;
@@ -27,6 +28,7 @@ public class PostService implements GetAllPostsDetailUseCase, GetSpecificPostUse
     private final DeletePostPort deletePostPort;
     private final GetAllPostsPort getAllPostsPort;
     private final GetTotalPostRowNumPort getTotalPostRowNumPort;
+    private final SearchPostsPort searchPostsPort;
 
 
     @Override
@@ -42,6 +44,11 @@ public class PostService implements GetAllPostsDetailUseCase, GetSpecificPostUse
     @Override
     public List<Post> getDetailPosts(PostType postType) {
         return getAllPostsDetailPort.getDetailPosts(postType);
+    }
+
+    @Override
+    public List<Post> searchPosts(String keyword, Pagination pg, PostType postType) {
+        return searchPostsPort.searchPosts(new PostSearchDto(keyword, pg.getStartRow(), pg.getRowSize()), postType);
     }
 
     @Transactional
@@ -69,4 +76,6 @@ public class PostService implements GetAllPostsDetailUseCase, GetSpecificPostUse
     public int getTotalRowNum(PostType postType) {
         return getTotalPostRowNumPort.getTotalRowNum(postType);
     }
+
+
 }

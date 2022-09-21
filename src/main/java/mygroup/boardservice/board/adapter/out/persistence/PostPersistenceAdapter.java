@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import mygroup.boardservice.board.adapter.out.persistence.repository.PostRepository;
 import mygroup.boardservice.board.application.port.out.post.*;
 import mygroup.boardservice.board.application.port.out.post.dto.PostSaveDto;
+import mygroup.boardservice.board.application.port.out.post.dto.PostSearchDto;
 import mygroup.boardservice.board.application.port.out.post.dto.PostUpdateDto;
 import mygroup.boardservice.board.domain.Post;
 import mygroup.boardservice.board.domain.PostType;
@@ -15,7 +16,7 @@ import java.util.List;
 @Component
 public class PostPersistenceAdapter implements GetSpecificPostPort, GetAllPostsDetailPort, SavePostPort
                                                     , UpdatePostPort, DeletePostPort, GetAllPostsPort
-                                                    , GetTotalPostRowNumPort {
+                                                    , GetTotalPostRowNumPort, SearchPostsPort {
 
     private final PostRepository postRepository;
 
@@ -32,6 +33,11 @@ public class PostPersistenceAdapter implements GetSpecificPostPort, GetAllPostsD
     @Override
     public List<Post> getDetailPosts(PostType postType) {
         return postRepository.findAllDetail(postType);
+    }
+
+    @Override
+    public List<Post> searchPosts(PostSearchDto postSearchDto, PostType postType) {
+        return postRepository.searchByKeyword(postSearchDto, postType);
     }
 
     @Override
@@ -54,4 +60,6 @@ public class PostPersistenceAdapter implements GetSpecificPostPort, GetAllPostsD
     public int getTotalRowNum(PostType postType) {
         return postRepository.getTotalRowNum(postType);
     }
+
+
 }

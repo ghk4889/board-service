@@ -5,6 +5,7 @@ import mygroup.boardservice.board.adapter.out.persistence.mapper.CommentMapper;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.PostMapper;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.VipPostMapper;
 import mygroup.boardservice.board.application.port.out.post.dto.PostSaveDto;
+import mygroup.boardservice.board.application.port.out.post.dto.PostSearchDto;
 import mygroup.boardservice.board.application.port.out.post.dto.PostUpdateDto;
 import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostSaveDto;
 import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostUpdateDto;
@@ -13,6 +14,7 @@ import mygroup.boardservice.board.domain.PostType;
 import mygroup.boardservice.board.domain.VipPost;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -33,6 +35,10 @@ public class PostRepository {
 
     public List<Post> findAllDetail(PostType postType){
         return getPostMapper(postType).findAllDetail();
+    }
+
+    public List<Post> searchByKeyword(PostSearchDto postSearchDto, PostType postType){
+        return getPostMapper(postType).searchByKeyword(postSearchDto);
     }
 
     public int getTotalRowNum(PostType postType){

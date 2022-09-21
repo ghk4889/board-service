@@ -64,13 +64,12 @@
         WHERE vp.id=#{id} AND u.nickname = vp.writer;
     </select>
 
-    <select id="findAll" parameterType="int" resultMap="PostResultMap">
+    <select id="findAll"  resultMap="PostResultMap">
         SELECT id, title, content, writer, view_count, created_date, modified_date
         FROM vip_post
-        LIMIT #{arg0}, #{arg1}
+        LIMIT #{startRow}, #{rowSize}
         ;
     </select>
-
 
     <select id="findAllDetail" resultMap="DetailPostResultMap" >
         SELECT vp.id as vpid , vp.title, vp.content as vcontent, vp.writer, vp.view_count, vp.created_date, vp.modified_date
@@ -78,6 +77,12 @@
         , c.id as cid, c.content as ccontent, c.writer as c_writer, c.created_date as c_created_date, c.modified_date as c_modified_date, c.post_id, c.reply_target_id
         FROM vip_post vp LEFT OUTER JOIN (select * from vip_comment) as c ON c.post_id = vp.id, user u
         WHERE u.nickname = vp.writer ;
+    </select>
+    
+    <select id="searchByKeyword" parameterType="PostSearchDto" resultMap="PostResultMap">
+        SELECT * FROM vip_post
+        WHERE title LIKE '%${keyword}%' OR content LIKE '%${keyword}%'
+        LIMIT #{startRow}, #{rowSize};
     </select>
 
     <select id="getTotalRowNum" resultType="int">

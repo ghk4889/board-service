@@ -3,10 +3,7 @@ package mygroup.boardservice.board.adapter.in.web;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mygroup.boardservice.board.application.port.in.post.GetAllPostsDetailUseCase;
-import mygroup.boardservice.board.application.port.in.post.GetAllPostsUseCase;
-import mygroup.boardservice.board.application.port.in.post.GetSpecificPostUseCase;
-import mygroup.boardservice.board.application.port.in.post.GetTotalPostRowNumUseCase;
+import mygroup.boardservice.board.application.port.in.post.*;
 import mygroup.boardservice.board.domain.Post;
 import mygroup.boardservice.board.domain.PostType;
 import mygroup.boardservice.common.Pagination;
@@ -26,8 +23,8 @@ import java.util.Locale;
 public class PostController {
 
     private final GetAllPostsUseCase getAllPostsUseCase;
-    private final GetSpecificPostUseCase getSpecificPostUseCase;
     private final GetTotalPostRowNumUseCase getTotalPostRowNumUseCase;
+    private final SearchPostsUseCase searchPostsUseCase;
 
     @GetMapping("/")
     public String index(Model model){
@@ -54,6 +51,19 @@ public class PostController {
         model.addAttribute("posts", posts);
         model.addAttribute("pagination", pagination);
         return "posts/"+postType.name().toLowerCase(Locale.ROOT)+"posts";
+    }
+
+    //검색
+    @GetMapping("/{postType}posts/search")
+    public String search(@PathVariable PostType postType, @RequestParam String keyword
+            ,  Model model, @RequestParam(defaultValue = "1") int currentPageNum){
+        Pagination pagination = new Pagination(currentPageNum, getTotalPostRowNumUseCase.getTotalRowNum(postType));
+        List<Post> posts = searchPostsUseCase.searchPosts(keyword, pagination, postType);
+        model.addAttribute("posts", posts);
+        model.addAttribute("pagination", pagination);
+
+        return "posts/"+postType.name().toLowerCase(Locale.ROOT)+"posts";
+        // 동작하는지 확인하기
     }
 
 }
