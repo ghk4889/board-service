@@ -62,6 +62,14 @@ public class PostController {
         return "posts/post";
     }
 
+    //게시글 수정 폼 페이지
+    @GetMapping("/{postType}posts/{id}/edit")
+    public String editForm(@PathVariable PostType postType, Model model, @PathVariable long id){
+        Post post = getSpecificPostUseCase.getPost(id, postType);
+        model.addAttribute("post", post);
+        model.addAttribute("postType", (postType.name().toLowerCase(Locale.ROOT)));
+        return "posts/editPost";
+    }
 
     //검색
     @GetMapping("/{postType}posts/search")
