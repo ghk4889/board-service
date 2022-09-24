@@ -35,7 +35,7 @@
 
     <div class="row ">
 
-        <div class="container-fluid col-7 " >
+        <div class="container-fluid col-6 mx-0 " >
 
             <div class="row d-flex justify-content-between">
 
@@ -46,7 +46,7 @@
 
             </div>
 
-            <!-- 게시글 상세 정보-->
+            <!-- 수정 폼-->
 
             <div id="posts_list" class="row mt-5">
                 <div class="col-md-12 ">
@@ -75,8 +75,8 @@
 
 
         <!--회원 정보 카드-->
-        <div class="">
-            <div class="card text-center mx-5" style="width: 15rem;">
+        <div th:replace="~{fragment :: userCard}" class="col-2 mx-2 my-5">
+            <div class="card text-center" style="width: 15rem;">
                 <div class="card-body ">
                     <h5 class="card-title">로그인 하시면 게시글 작성이 가능합니다.</h5>
                     <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
