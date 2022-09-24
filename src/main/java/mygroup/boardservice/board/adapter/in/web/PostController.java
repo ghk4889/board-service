@@ -25,6 +25,7 @@ public class PostController {
     private final GetAllPostsUseCase getAllPostsUseCase;
     private final GetTotalPostRowNumUseCase getTotalPostRowNumUseCase;
     private final SearchPostsUseCase searchPostsUseCase;
+    private final GetSpecificPostUseCase getSpecificPostUseCase;
 
     @GetMapping("/")
     public String index(Model model){
@@ -53,6 +54,15 @@ public class PostController {
         return "posts/"+postType.name().toLowerCase(Locale.ROOT)+"posts";
     }
 
+    //게시글 상세 페이지
+    @GetMapping("/{postType}posts/{id}")
+    public String post(@PathVariable PostType postType, Model model, @PathVariable long id){
+        Post post = getSpecificPostUseCase.getPost(id, postType);
+        model.addAttribute("post", post);
+        return "posts/post";
+    }
+
+
     //검색
     @GetMapping("/{postType}posts/search")
     public String search(@PathVariable PostType postType, @RequestParam String keyword
@@ -63,7 +73,7 @@ public class PostController {
         model.addAttribute("pagination", pagination);
 
         return "posts/"+postType.name().toLowerCase(Locale.ROOT)+"posts";
-        // 동작하는지 확인하기
     }
+
 
 }
