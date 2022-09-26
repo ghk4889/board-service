@@ -71,6 +71,13 @@ public class PostController {
         return "posts/editPost";
     }
 
+    //게시글 등록 폼 페이지
+    @GetMapping("/{postType}posts/new")
+    public String addForm(@PathVariable PostType postType, Model model){
+        model.addAttribute("postType", (postType.name().toLowerCase(Locale.ROOT)));
+        return "posts/addPost";
+    }
+
     //검색
     @GetMapping("/{postType}posts/search")
     public String search(@PathVariable PostType postType, @RequestParam String keyword
