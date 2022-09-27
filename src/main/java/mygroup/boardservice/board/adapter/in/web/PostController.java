@@ -82,10 +82,12 @@ public class PostController {
     @GetMapping("/{postType}posts/search")
     public String search(@PathVariable PostType postType, @RequestParam String keyword
             ,  Model model, @RequestParam(defaultValue = "1") int currentPageNum){
-        Pagination pagination = new Pagination(currentPageNum, getTotalPostRowNumUseCase.getTotalRowNum(postType));
+        Pagination pagination = new Pagination(currentPageNum
+                    , getTotalPostRowNumUseCase.getTotalRowNumForSearch(postType, keyword));
         List<Post> posts = searchPostsUseCase.searchPosts(keyword, pagination, postType);
         model.addAttribute("posts", posts);
         model.addAttribute("pagination", pagination);
+        model.addAttribute("keyword", keyword);
 
         return "posts/"+postType.name().toLowerCase(Locale.ROOT)+"posts";
     }

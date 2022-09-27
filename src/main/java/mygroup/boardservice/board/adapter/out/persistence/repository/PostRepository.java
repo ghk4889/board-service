@@ -45,6 +45,10 @@ public class PostRepository {
         return getPostMapper(postType).getTotalRowNum();
     }
 
+    public int getTotalRowNumForSearch(PostType postType, String keyword){
+        return getPostMapper(postType).getTotalRowNumForSearch(keyword);
+    }
+
     public Long save(PostSaveDto postSaveDto, PostType postType){
         getPostMapper(postType).save(postSaveDto);
         return postSaveDto.getId(); // 삽입된 post의 id 값을 반환

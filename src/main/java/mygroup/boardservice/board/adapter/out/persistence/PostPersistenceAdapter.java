@@ -61,5 +61,10 @@ public class PostPersistenceAdapter implements GetSpecificPostPort, GetAllPostsD
         return postRepository.getTotalRowNum(postType);
     }
 
+    @Override
+    public int getTotalRowNumForSearch(PostType postType, String keyword) {
+        return postRepository.getTotalRowNumForSearch(postType, keyword);
+    }
+
 
 }

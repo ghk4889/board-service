@@ -21,6 +21,7 @@ public interface PostMapper {
     List<Post> findAllDetail();
     List<Post> searchByKeyword(PostSearchDto postSearchDto);
     int getTotalRowNum();
+    int getTotalRowNumForSearch(String keyword);
     void save(PostSaveDto postSaveDto);
     void update(PostUpdateDto postUpdateDto);
     void delete(Long id);

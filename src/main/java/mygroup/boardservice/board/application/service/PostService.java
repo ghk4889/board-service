@@ -77,5 +77,10 @@ public class PostService implements GetAllPostsDetailUseCase, GetSpecificPostUse
         return getTotalPostRowNumPort.getTotalRowNum(postType);
     }
 
+    @Override
+    public int getTotalRowNumForSearch(PostType postType, String keyword) {
+        return getTotalPostRowNumPort.getTotalRowNumForSearch(postType, keyword);
+    }
+
 
 }

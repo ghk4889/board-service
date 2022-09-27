@@ -80,13 +80,18 @@
     </select>
     
     <select id="searchByKeyword" parameterType="PostSearchDto" resultMap="PostResultMap">
-        SELECT * FROM vip_post
+        SELECT id, title, content, writer, view_count, created_date, modified_date
+        FROM vip_post
         WHERE title LIKE '%${keyword}%' OR content LIKE '%${keyword}%'
         LIMIT #{startRow}, #{rowSize};
     </select>
 
     <select id="getTotalRowNum" resultType="int">
         SELECT count(*) FROM vip_post;
+    </select>
+
+    <select id="getTotalRowNumForSearch" parameterType="String" resultType="int">
+        SELECT count(*) FROM vip_post WHERE title LIKE '%${keyword}%' OR content LIKE '%${keyword}%';
     </select>
 
     <insert id="save" parameterType="PostSaveDto" useGeneratedKeys="true" keyProperty="id" >
