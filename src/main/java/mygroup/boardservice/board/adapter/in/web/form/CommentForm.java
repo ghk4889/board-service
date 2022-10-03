@@ -37,7 +37,8 @@ public class CommentForm {
         }
 
         /* Dto -> Entity */
-        public CommentUpdateDto toUpdateEntity() {
+        public CommentUpdateDto toUpdateEntity(Long id) {
+            this.id = id;
             return new CommentUpdateDto(id, content, new Date(System.currentTimeMillis()));
         }
     }

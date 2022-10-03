@@ -2,7 +2,6 @@ package mygroup.boardservice.board.application.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mygroup.boardservice.board.adapter.out.persistence.VipPostPersistenceAdapter;
 import mygroup.boardservice.board.adapter.out.persistence.mapper.VipPostMapper;
 import mygroup.boardservice.board.application.port.out.vippost.*;
 import mygroup.boardservice.board.application.port.out.vippost.dto.VipPostSaveDto;
